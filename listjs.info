@@ -1,0 +1,5 @@
+name = ADB views listjs
+description = Provides listjs style for views
+core = 7.x
+dependencies[] = views
+files[] = includes/views/plugins/adb_views_listjs_plugin_style_listjs.inc
