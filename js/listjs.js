@@ -1,21 +1,36 @@
 (function ($) {
-  Drupal.behaviors.adbViewsListjs = {
+  Drupal.behaviors.listjs = {
     attach: function(context, settings) {
-      // @TODO make the classes configurable.
-      var options = {
-        valueNames: ['name']
-      };
+      var options = {};
 
-      // Invoke functions.
-      enableListJs();
-
-      /**
-       * Enable list js.
-       */
-      function enableListJs() {
-        // @TODO make the id configurable.
-        var listJs = new List('listjs-wrapper', options);
+      if (settings.facetapi) {
+        for (var i = 0; i < settings.facetapi.facets.length; i++) {
+          if (settings.facetapi.facets[i].listJs) {
+            options = {
+              valueNames: settings.facetapi.facets[i].listJs.contentAttributes
+            };
+            Drupal.listJs.enableListJs(settings.facetapi.facets[i].listJs, options);
+          }
+        }
+      }
+      else {
+        options = {
+          valueNames: settings.listJs.contentAttributes
+        };
+        Drupal.listJs.enableListJs(settings.listJs, options);
       }
     }
-  };
+  }
+
+  /**
+   * Class containing functionality for listjs.
+   */
+  Drupal.listJs = {}
+
+  /**
+   * Enable list js.
+   */
+  Drupal.listJs.enableListJs = function(settings, options) {
+    var listJs = new List(settings.listId, options);
+  }
 }(jQuery));

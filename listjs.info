@@ -1,5 +1,5 @@
-name = ADB views listjs
-description = Provides listjs style for views
+name = List.js
+description = Search, sort, filter HTML lists using listjs library
 core = 7.x
-dependencies[] = views
-files[] = includes/views/plugins/adb_views_listjs_plugin_style_listjs.inc
+files[] = includes/views/plugins/listjs_plugin_style_listjs.inc
+files[] = includes/facetapi/plugins/widget_listjs.inc

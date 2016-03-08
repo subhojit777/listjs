@@ -2,29 +2,109 @@
 
 /**
  * @file
- * Provides listjs style for views.
+ * Search, sort, filter HTML lists using listjs library.
  */
 
 /**
  * Implements hook_views_api().
  */
-function adb_views_listjs_views_api() {
+function listjs_views_api() {
   return array(
     'api' => 3,
-    'path' => drupal_get_path('module', 'adb_views_listjs') . '/includes/views',
+    'path' => drupal_get_path('module', 'listjs') . '/includes/views',
   );
 }
 
 /**
  * Implements hook_theme().
  */
-function adb_views_listjs_theme($existing, $type, $theme, $path) {
+function listjs_theme($existing, $type, $theme, $path) {
   return array(
-    'adb_listjs' => array(
+    'listjs' => array(
       'variables' => array(
         'placeholder_text' => NULL,
         'items' => NULL,
+        'list_attributes' => NULL,
+        'list_id' => NULL,
+      ),
+      'template' => 'theme/listjs',
+    ),
+  );
+}
+
+/**
+ * Implements hook_facetapi_widgets().
+ */
+function listjs_facetapi_widgets() {
+  return array(
+    'listjs' => array(
+      'handler' => array(
+        'label' => t('Listjs'),
+        'class' => 'FacetapiWidgetListjs',
+        'query types' => array('term', 'date'),
       ),
     ),
   );
+}
+
+/**
+ * Add more variables to listjs template.
+ */
+function template_preprocess_listjs(&$variables) {
+  // Alter variables if it is rendered from view.
+  if (!empty($variables['view'])) {
+    $items = array();
+    $content_attributes = array();
+    $view = $variables['view'];
+
+    $row_plugin = $view->style_plugin->row_plugin;
+
+    // Prepare items to be shown in the list.
+    foreach ($variables['rows'] as $id => $row) {
+      $view->row_index = $id;
+      $item['data'] = $row_plugin->render($row);
+      $items[] = $item;
+    }
+
+    // Prepare content attributes.
+    foreach ($view->display_handler->get_handlers('field') as $field_handler) {
+      if (in_array($field_handler->field, $variables['options']['filter_fields'], TRUE)) {
+        if (!empty($field_handler->element_classes())) {
+          $content_attributes[] = $field_handler->element_classes();
+        }
+        else if (!empty($field_handler->element_wrapper_classes())) {
+          $content_attributes[] = $field_handler->element_wrapper_classes();
+        }
+        else {
+          // Views has hard coded this class.
+          // @see template_preprocess_views_view_fields()
+          $content_attributes[] = drupal_html_class('views-field-' . $field_handler->field);
+        }
+      }
+    }
+
+    // Add items to variables array.
+    $variables['items'] = $items;
+    $variables['placeholder_text'] = $variables['options']['placeholder_text'];
+    $variables['list_id'] = $variables['view']->name . '-wrapper';
+    $variables['list_attributes'] = array(
+      'class' => array(
+        'list',
+      ),
+    );
+
+    // Add resources and JavaScript settings.
+    drupal_add_js(array(
+      'listJs' => array(
+        'listId' => $variables['list_id'],
+      ),
+    ), 'setting');
+    drupal_add_js(array(
+      'listJs' => array(
+        'contentAttributes' => $content_attributes,
+      ),
+    ), 'setting');
+    drupal_add_js(drupal_get_path('module', 'listjs') . '/js/list.min.js');
+    drupal_add_js(drupal_get_path('module', 'listjs') . '/js/listjs.js');
+  }
 }

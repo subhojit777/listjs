@@ -8,8 +8,7 @@
 /**
  * Implements a style type plugin for the Views module.
  */
-class AdbViewsListjsPluginStyleListjs extends views_plugin_style {
-
+class ViewsListjsPluginStyleListjs extends views_plugin_style {
   /**
    * Set default options.
    */
@@ -28,10 +27,24 @@ class AdbViewsListjsPluginStyleListjs extends views_plugin_style {
   function options_form(&$form, &$form_state) {
     parent::options_form($form, $form_state);
 
+    // Available fields.
+    $field_options = array();
+    foreach ($this->view->display_handler->get_handlers('field') as $field => $handler) {
+      $field_options[$field] = $handler->ui_name();
+    }
+
     $form['placeholder_text'] = array(
       '#type' => 'textfield',
       '#title' => t('Placeholder text for search box'),
       '#default_value' => $this->options['placeholder_text'],
+    );
+
+    $form['filter_fields'] = array(
+      '#type' => 'checkboxes',
+      '#title' => t('Filterable fields'),
+      '#description' => t('Select the fields on which you want to apply filter'),
+      '#options' => $field_options,
+      '#default_value' => $this->options['filter_fields'],
     );
   }
 
@@ -46,7 +59,7 @@ class AdbViewsListjsPluginStyleListjs extends views_plugin_style {
     $output = '';
 
     foreach ($sets as $title => $rows) {
-      $output .= theme($this->theme_functions(), array(
+      $output .= theme('listjs', array(
         'view' => $this->view,
         'options' => $this->options,
         'rows' => $rows,
