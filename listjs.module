@@ -56,14 +56,44 @@ function template_preprocess_listjs(&$variables) {
     $items = array();
     $content_attributes = array();
     $view = $variables['view'];
-
-    $row_plugin = $view->style_plugin->row_plugin;
+    $fields = $view->field;
+    $handler = $view->style_plugin;
+    $renders = $handler->render_fields($variables['rows']);
 
     // Prepare items to be shown in the list.
-    foreach ($variables['rows'] as $id => $row) {
-      $view->row_index = $id;
-      $item['data'] = $row_plugin->render($row);
-      $items[] = $item;
+    foreach ($renders as $id => $row) {
+      $row_markup = '';
+
+      foreach ($fields as $key => $field) {
+        if (empty($field->options['exclude'])) {
+          $classes = '';
+
+          // Prepare row classes.
+          if ($field->options['element_default_classes']) {
+            $classes = 'views-field views-field-' . $field->field;
+          }
+          if ($field_classes = $field->element_classes($id)) {
+            if (!empty($classes)) {
+              $classes .= ' ';
+            }
+
+            $classes .= $field_classes;
+          }
+
+          // Create row markup.
+          $element_type = $field->element_type(TRUE, TRUE);
+          if ($element_type) {
+            $row_markup .= '<' . $element_type . ' class="' . $classes . '">' . $row[$field->field] . '</' . $element_type . '>';
+          }
+          else {
+            $row_markup .= '<div class="' . $classes . '">' . $row[$field->field] . '</div>';
+          }
+        }
+      }
+
+      $items[] = array(
+        'data' => $row_markup,
+      );
     }
 
     // Prepare content attributes.

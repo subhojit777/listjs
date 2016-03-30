@@ -16,7 +16,7 @@ function listjs_views_plugins() {
         'title' => t('List.js'),
         'help' => t('Display the results in a list.js widget.'),
         'handler' => 'ViewsListjsPluginStyleListjs',
-        'uses row plugin' => TRUE,
+        'uses row plugin' => FALSE,
         'uses row class' => TRUE,
         'uses fields' => TRUE,
         'uses options' => TRUE,
