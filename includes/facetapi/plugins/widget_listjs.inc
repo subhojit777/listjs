@@ -74,12 +74,8 @@ class FacetapiWidgetListjs extends FacetapiWidgetLinks {
       '#default_value' => $this->settings->settings['placeholder_text'],
       '#states' => array(
         'visible' => array(
-          array(
-            array(
-              'select[name="widget"]' => array(
-                'value' => 'listjs',
-              ),
-            ),
+          'select[name="widget"]' => array(
+            'value' => 'listjs',
           ),
         ),
       ),
