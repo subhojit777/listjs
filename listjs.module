@@ -26,6 +26,7 @@ function listjs_theme($existing, $type, $theme, $path) {
         'items' => NULL,
         'list_attributes' => NULL,
         'list_id' => NULL,
+        'content_attributes' => array(),
       ),
       'template' => 'theme/listjs',
     ),
@@ -54,7 +55,6 @@ function template_preprocess_listjs(&$variables) {
   // Alter variables if it is rendered from view.
   if (!empty($variables['view'])) {
     $items = array();
-    $content_attributes = array();
     $view = $variables['view'];
     $fields = $view->field;
     $handler = $view->style_plugin;
@@ -100,15 +100,15 @@ function template_preprocess_listjs(&$variables) {
     foreach ($view->display_handler->get_handlers('field') as $field_handler) {
       if (in_array($field_handler->field, $variables['options']['filter_fields'], TRUE)) {
         if (!empty($field_handler->element_classes())) {
-          $content_attributes[] = $field_handler->element_classes();
+          $variables['content_attributes'][] = $field_handler->element_classes();
         }
         else if (!empty($field_handler->element_wrapper_classes())) {
-          $content_attributes[] = $field_handler->element_wrapper_classes();
+          $variables['content_attributes'][] = $field_handler->element_wrapper_classes();
         }
         else {
           // Views has hard coded this class.
           // @see template_preprocess_views_view_fields()
-          $content_attributes[] = drupal_html_class('views-field-' . $field_handler->field);
+          $variables['content_attributes'][] = drupal_html_class('views-field-' . $field_handler->field);
         }
       }
     }
@@ -117,24 +117,22 @@ function template_preprocess_listjs(&$variables) {
     $variables['items'] = $items;
     $variables['placeholder_text'] = $variables['options']['placeholder_text'];
     $variables['list_id'] = $variables['view']->name . '-wrapper';
-    $variables['list_attributes'] = array(
-      'class' => array(
-        'list',
-      ),
-    );
-
-    // Add resources and JavaScript settings.
-    drupal_add_js(array(
-      'listJs' => array(
-        'listId' => $variables['list_id'],
-      ),
-    ), 'setting');
-    drupal_add_js(array(
-      'listJs' => array(
-        'contentAttributes' => $content_attributes,
-      ),
-    ), 'setting');
-    drupal_add_js(drupal_get_path('module', 'listjs') . '/js/list.min.js');
-    drupal_add_js(drupal_get_path('module', 'listjs') . '/js/listjs.js');
   }
+
+  // Add default settings and resources.
+  // For listjs facet, most of these settings are set by facetapi itself.
+  // @see FacetapiWidgetListjs::init()
+  $variables['list_attributes']['class'][] = 'list';
+  drupal_add_js(array(
+    'listJs' => array(
+      'listId' => $variables['list_id'],
+    ),
+  ), 'setting');
+  drupal_add_js(array(
+    'listJs' => array(
+      'contentAttributes' => $variables['content_attributes'],
+    ),
+  ), 'setting');
+  drupal_add_js(drupal_get_path('module', 'listjs') . '/js/list.min.js');
+  drupal_add_js(drupal_get_path('module', 'listjs') . '/js/listjs.js');
 }

@@ -20,8 +20,6 @@ class FacetapiWidgetListjs extends FacetapiWidgetLinks {
     parent::init();
 
     // Override render array so that it can be themed using theme_listjs().
-    $this->build['#attached']['js'][] = drupal_get_path('module', 'listjs') . '/js/list.min.js';
-    $this->build['#attached']['js'][] = drupal_get_path('module', 'listjs') . '/js/listjs.js';
     $this->build['listjs']['#list_id'] = $this->build['#attributes']['id'] . '-wrapper';
     // We could have got this from `$this->build` itself, but I preferred to
     // create content attribute here so that it is independent of the attributes
@@ -48,17 +46,15 @@ class FacetapiWidgetListjs extends FacetapiWidgetLinks {
   public function execute() {
     $element = &$this->build[$this->facet['field alias']];
 
-    $attributes = $this->build['#attributes'];
-    $attributes['class'][] = 'list';
-
     // Sets each item's theme hook, builds item list.
     $this->setThemeHooks($element);
     $element = array(
       '#theme' => 'listjs',
       '#items' => $this->buildListItems($element),
       '#placeholder_text' => $this->settings->settings['placeholder_text'],
-      '#list_attributes' => $attributes,
+      '#list_attributes' => $this->build['#attributes'],
       '#list_id' => $this->build['listjs']['#list_id'],
+      '#content_attributes' => $this->build['listjs']['#content_attributes'],
     );
   }
 
