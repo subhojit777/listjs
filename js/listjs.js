@@ -7,7 +7,7 @@
         for (var i = 0; i < settings.facetapi.facets.length; i++) {
           if (settings.facetapi.facets[i].listJs) {
             options = {
-              valueNames: settings.facetapi.facets[i].listJs.contentAttributes
+              valueNames: settings.facetapi.facets[i].listJs.valueNames
             };
             Drupal.listJs.enableListJs(settings.facetapi.facets[i].listJs, options);
           }
@@ -15,7 +15,7 @@
       }
       else {
         options = {
-          valueNames: settings.listJs.contentAttributes
+          valueNames: settings.listJs.valueNames
         };
         Drupal.listJs.enableListJs(settings.listJs, options);
       }

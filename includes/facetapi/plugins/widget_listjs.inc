@@ -22,14 +22,14 @@ class FacetapiWidgetListjs extends FacetapiWidgetLinks {
     // Override render array so that it can be themed using theme_listjs().
     $this->build['listjs']['#list_id'] = $this->build['#attributes']['id'] . '-wrapper';
     // We could have got this from `$this->build` itself, but I preferred to
-    // create content attribute here so that it is independent of the attributes
+    // create value names here so that it is independent of the attributes
     // generated in the parent class.
     // @see FacetapiWidget::init()
-    $this->build['listjs']['#content_attributes'] = array(
+    $this->build['listjs']['#value_names'] = array(
       drupal_html_class("facetapi-facet-{$this->facet['name']}-name"),
     );
     $this->jsSettings['listJs']['listId'] = $this->build['listjs']['#list_id'];
-    $this->jsSettings['listJs']['contentAttributes'] = $this->build['listjs']['#content_attributes'];
+    $this->jsSettings['listJs']['valueNames'] = $this->build['listjs']['#value_names'];
 
     return $this;
   }
@@ -54,7 +54,7 @@ class FacetapiWidgetListjs extends FacetapiWidgetLinks {
       '#placeholder_text' => $this->settings->settings['placeholder_text'],
       '#list_attributes' => $this->build['#attributes'],
       '#list_id' => $this->build['listjs']['#list_id'],
-      '#content_attributes' => $this->build['listjs']['#content_attributes'],
+      '#value_names' => $this->build['listjs']['#value_names'],
     );
   }
 
@@ -91,7 +91,7 @@ class FacetapiWidgetListjs extends FacetapiWidgetLinks {
    * Overrides FacetapiWidgetLinks::getItemClasses().
    */
   public function getItemClasses() {
-    return array_merge(array('facetapi-listjs'), $this->build['listjs']['#content_attributes']);
+    return array_merge(array('facetapi-listjs'), $this->build['listjs']['#value_names']);
   }
 
 }
