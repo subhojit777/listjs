@@ -99,11 +99,14 @@ function template_preprocess_listjs(&$variables) {
     // Prepare value names.
     foreach ($view->display_handler->get_handlers('field') as $field_handler) {
       if (in_array($field_handler->field, $variables['options']['filter_fields'], TRUE)) {
-        if (!empty($field_handler->element_classes())) {
-          $variables['value_names'][] = $field_handler->element_classes();
+        $element_classes = $field_handler->element_classes();
+        $element_wrapper_classes = $field_handler->element_wrapper_classes();
+
+        if (!empty($element_classes)) {
+          $variables['value_names'][] = $element_classes;
         }
-        else if (!empty($field_handler->element_wrapper_classes())) {
-          $variables['value_names'][] = $field_handler->element_wrapper_classes();
+        else if (!empty($element_wrapper_classes)) {
+          $variables['value_names'][] = $element_wrapper_classes;
         }
         else {
           // Views has hard coded this class.
