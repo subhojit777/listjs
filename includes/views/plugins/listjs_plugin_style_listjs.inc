@@ -9,14 +9,16 @@
  * Implements a style type plugin for the Views module.
  */
 class ViewsListjsPluginStyleListjs extends views_plugin_style {
+
   /**
    * Set default options.
    */
   function option_definition() {
     $options = parent::option_definition();
 
-    // More options.
-    $options['placeholder_text'] = array('default' => FALSE);
+    $options['placeholder_text'] = array(
+      'default' => t('Filter'),
+    );
 
     return $options;
   }
@@ -27,25 +29,64 @@ class ViewsListjsPluginStyleListjs extends views_plugin_style {
   function options_form(&$form, &$form_state) {
     parent::options_form($form, $form_state);
 
-    // Available fields.
-    $field_options = array();
-    foreach ($this->view->display_handler->get_handlers('field') as $field => $handler) {
-      $field_options[$field] = $handler->ui_name();
-    }
-
     $form['placeholder_text'] = array(
       '#type' => 'textfield',
       '#title' => t('Placeholder text for search box'),
       '#default_value' => $this->options['placeholder_text'],
     );
 
-    $form['filter_fields'] = array(
-      '#type' => 'checkboxes',
+    $form['filterable_fields'] = array(
       '#title' => t('Filterable fields'),
-      '#description' => t('Select the fields on which you want to apply filter'),
-      '#options' => $field_options,
-      '#default_value' => $this->options['filter_fields'],
+      '#type' => 'fieldset',
+      '#collapsible' => FALSE,
+      '#collapsed' => FALSE,
+      '#tree' => TRUE,
     );
+
+    foreach ($this->view->display_handler->get_handlers('field') as $field => $handler) {
+      $form['filterable_fields'][$field] = array(
+        '#title' => $handler->ui_name(),
+        '#type' => 'fieldset',
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
+        '#tree' => TRUE,
+      );
+
+      $form['filterable_fields'][$field]['filterable'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('Filterable'),
+        '#default_value' => !isset($this->options['filterable_fields'][$field]['filterable']) ? TRUE : $this->options['filterable_fields'][$field]['filterable'],
+      );
+
+      $form['filterable_fields'][$field]['sort'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('Sortable'),
+        '#default_value' => $this->options['filterable_fields'][$field]['sort'],
+        '#dependency' => array(
+          "edit-style-options-filterable-fields-$field-filterable" => array(1),
+        ),
+      );
+
+      $form['filterable_fields'][$field]['sort_text'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Sort text'),
+        '#default_value' => empty($this->options['filterable_fields'][$field]['sort_text']) ? t('@field_name sort', array('@field_name' => $handler->ui_name())) : $this->options['filterable_fields'][$field]['sort_text'],
+        '#dependency' => array(
+          "edit-style-options-filterable-fields-$field-filterable" => array(1),
+        ),
+      );
+    }
+  }
+
+  /**
+   * Validate style options.
+   */
+  function options_validate(&$form, &$form_state) {
+    foreach ($form_state['values']['style_options']['filterable_fields'] as $field => $options) {
+      if ($options['sort'] == 1 && empty($options['sort_text'])) {
+        form_error($form['filterable_fields'][$field]['sort_text'], t('Sort text is required if sort is enabled'));
+      }
+    }
   }
 
   /**
@@ -68,4 +109,5 @@ class ViewsListjsPluginStyleListjs extends views_plugin_style {
 
     return $output;
   }
+
 }

@@ -21,12 +21,15 @@ class FacetapiWidgetListjs extends FacetapiWidgetLinks {
 
     // Override render array so that it can be themed using theme_listjs().
     $this->build['listjs']['#list_id'] = $this->build['#attributes']['id'] . '-wrapper';
-    // We could have got this from `$this->build` itself, but I preferred to
-    // create value names here so that it is independent of the attributes
-    // generated in the parent class.
+    // We could have got the class attribute from `$this->build` itself, but I
+    // preferred to create value name here so that it is independent of the
+    // attributes generated in the parent class.
     // @see FacetapiWidget::init()
-    $this->build['listjs']['#value_names'] = array(
-      drupal_html_class("facetapi-facet-{$this->facet['name']}-name"),
+    $this->build['listjs']['#value_name'] = drupal_html_class("facetapi-facet-{$this->facet['name']}-name");
+    $this->build['listjs']['#value_names'][] = array(
+      'value_name' => $this->build['listjs']['#value_name'],
+      'sort' => $this->settings->settings['sort'],
+      'sort_text' => $this->settings->settings['sort_text'],
     );
     $this->jsSettings['listJs']['listId'] = $this->build['listjs']['#list_id'];
     $this->jsSettings['listJs']['valueNames'] = $this->build['listjs']['#value_names'];
@@ -76,6 +79,32 @@ class FacetapiWidgetListjs extends FacetapiWidgetLinks {
         ),
       ),
     );
+
+    $form['widget']['widget_settings']['listjs'][$this->id]['sort'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Sortable'),
+      '#default_value' => $this->settings->settings['sort'],
+      '#states' => array(
+        'visible' => array(
+          'select[name="widget"]' => array(
+            'value' => 'listjs',
+          ),
+        ),
+      ),
+    );
+
+    $form['widget']['widget_settings']['listjs'][$this->id]['sort_text'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Sort text'),
+      '#default_value' => $this->settings->settings['sort_text'],
+      '#states' => array(
+        'visible' => array(
+          'select[name="widget"]' => array(
+            'value' => 'listjs',
+          ),
+        ),
+      ),
+    );
   }
 
   /**
@@ -84,6 +113,8 @@ class FacetapiWidgetListjs extends FacetapiWidgetLinks {
   function getDefaultSettings() {
     $settings = parent::getDefaultSettings();
     $settings['placeholder_text'] = t('Filter');
+    $settings['sort'] = FALSE;
+    $settings['sort_text'] = t('Sort');
     return $settings;
   }
 
@@ -91,7 +122,10 @@ class FacetapiWidgetListjs extends FacetapiWidgetLinks {
    * Overrides FacetapiWidgetLinks::getItemClasses().
    */
   public function getItemClasses() {
-    return array_merge(array('facetapi-listjs'), $this->build['listjs']['#value_names']);
+    return array(
+      'facetapi-listjs',
+      $this->build['listjs']['#value_name'],
+    );
   }
 
 }
