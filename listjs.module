@@ -142,6 +142,35 @@ function template_preprocess_listjs(&$variables) {
       'valueNames' => $variables['value_names'],
     ),
   ), 'setting');
-  drupal_add_js(drupal_get_path('module', 'listjs') . '/js/list.min.js');
-  drupal_add_js(drupal_get_path('module', 'listjs') . '/js/listjs.js');
+  libraries_load('listjs');
+}
+
+/**
+ * Implements hook_libraries_info().
+ */
+function listJs_libraries_info() {
+  $libraries['listjs'] = array(
+    'name' => 'List.js',
+    'vendor url' => 'http://www.listjs.com',
+    'download url' => 'http://www.listjs.com/overview/download',
+    'version arguments' => array(
+      'file' => 'dist/list.js',
+      'pattern' => '/List\.js\s([\d\.]+)/',
+      'lines' => 10,
+    ),
+    'files' => array(
+      'js' => array(
+        'dist/list.min.js',
+      ),
+    ),
+    'integration files' => array(
+      'listjs' => array(
+        'js' => array(
+          'js/listjs.js'
+        ),
+      ),
+    ),
+  );
+
+  return $libraries;
 }
