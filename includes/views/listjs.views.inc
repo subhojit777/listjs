@@ -20,6 +20,7 @@ function listjs_views_plugins() {
         'uses row class' => TRUE,
         'uses fields' => TRUE,
         'uses options' => TRUE,
+        'uses grouping' => FALSE,
         'type' => 'normal',
       ),
     ),
