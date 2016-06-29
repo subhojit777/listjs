@@ -148,7 +148,7 @@ function template_preprocess_listjs(&$variables) {
 /**
  * Implements hook_libraries_info().
  */
-function listJs_libraries_info() {
+function listjs_libraries_info() {
   $libraries['listjs'] = array(
     'name' => 'List.js',
     'vendor url' => 'http://www.listjs.com',
