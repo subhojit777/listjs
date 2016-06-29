@@ -18,6 +18,10 @@ class ViewsListjsPluginStyleListjs extends views_plugin_style {
 
     $options['placeholder_text'] = array(
       'default' => t('Filter'),
+      'translatable' => TRUE,
+    );
+    $options['filterable_fields'] = array(
+      'default' => array(),
     );
 
     return $options;
@@ -55,13 +59,13 @@ class ViewsListjsPluginStyleListjs extends views_plugin_style {
       $form['filterable_fields'][$field]['filterable'] = array(
         '#type' => 'checkbox',
         '#title' => t('Filterable'),
-        '#default_value' => !isset($this->options['filterable_fields'][$field]['filterable']) ? TRUE : $this->options['filterable_fields'][$field]['filterable'],
+        '#default_value' => empty($this->options['filterable_fields'][$field]['filterable']) ? TRUE : $this->options['filterable_fields'][$field]['filterable'],
       );
 
       $form['filterable_fields'][$field]['sort'] = array(
         '#type' => 'checkbox',
         '#title' => t('Sortable'),
-        '#default_value' => $this->options['filterable_fields'][$field]['sort'],
+        '#default_value' => empty($this->options['filterable_fields'][$field]['sort']) ? FALSE : $this->options['filterable_fields'][$field]['sort'],
         '#dependency' => array(
           "edit-style-options-filterable-fields-$field-filterable" => array(1),
         ),
