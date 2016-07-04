@@ -1,3 +1,8 @@
+/**
+ * @file
+ * Enables ListJs for lists.
+ */
+
 (function ($) {
   Drupal.behaviors.listjs = {
     attach: function(context, settings) {

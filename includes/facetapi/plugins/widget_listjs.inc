@@ -64,7 +64,7 @@ class FacetapiWidgetListjs extends FacetapiWidgetLinks {
   /**
    * Overrides FacetapiWidgetLinks::settingsForm().
    */
-  function settingsForm(&$form, &$form_state) {
+  public function settingsForm(&$form, &$form_state) {
     parent::settingsForm($form, $form_state);
 
     $form['widget']['widget_settings']['listjs'][$this->id]['placeholder_text'] = array(
@@ -110,7 +110,7 @@ class FacetapiWidgetListjs extends FacetapiWidgetLinks {
   /**
    * Overrides FacetapiWidgetLinks::getDefaultSettings().
    */
-  function getDefaultSettings() {
+  public function getDefaultSettings() {
     $settings = parent::getDefaultSettings();
     $settings['placeholder_text'] = t('Filter');
     $settings['sort'] = FALSE;

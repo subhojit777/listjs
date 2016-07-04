@@ -105,7 +105,7 @@ function template_preprocess_listjs(&$variables) {
         if (!empty($element_classes)) {
           $value_names = $element_classes;
         }
-        else if (!empty($element_wrapper_classes)) {
+        elseif (!empty($element_wrapper_classes)) {
           $value_names = $element_wrapper_classes;
         }
         else {
@@ -166,7 +166,7 @@ function listjs_libraries_info() {
     'integration files' => array(
       'listjs' => array(
         'js' => array(
-          'js/listjs.js'
+          'js/listjs.js',
         ),
       ),
     ),

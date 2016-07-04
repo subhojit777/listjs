@@ -5,7 +5,7 @@
  * Views hook implementations.
  */
 
-/*
+/**
  * Implements hook_views_plugins().
  */
 function listjs_views_plugins() {
