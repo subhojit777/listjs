@@ -51,23 +51,17 @@
     // @see http://www.listjs.com/docs/list-api
     listJs.on('updated', function(listJs) {
       $(document).trigger('listJsUpdated', [listJs]);
-    })
-    .on('searchStart', function(listJs) {
+    }).on('searchStart', function(listJs) {
       $(document).trigger('listJsSearchStart', [listJs]);
-    })
-    .on('searchComplete', function(listJs) {
+    }).on('searchComplete', function(listJs) {
       $(document).trigger('listJsSearchComplete', [listJs]);
-    })
-    .on('filterStart', function(listJs) {
+    }).on('filterStart', function(listJs) {
       $(document).trigger('listJsFilterStart', [listJs]);
-    })
-    .on('filterComplete', function(listJs) {
+    }).on('filterComplete', function(listJs) {
       $(document).trigger('listJsFilterComplete', [listJs]);
-    })
-    .on('sortStart', function(listJs) {
+    }).on('sortStart', function(listJs) {
       $(document).trigger('listJsSortStart', [listJs]);
-    })
-    .on('sortComplete', function(listJs) {
+    }).on('sortComplete', function(listJs) {
       $(document).trigger('listJsSortComplete', [listJs]);
     });
   }
