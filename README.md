@@ -19,3 +19,6 @@ vanilla JavaScript library that adds search and flexibility to plain HTML lists.
 ## Screenshots:
 ![ListJs views style plugin](https://www.drupal.org/files/styles/grid-3/public/project-images/listjs-views.png?itok=ZIdJX5hE)
 ![ListJs facet widget](https://www.drupal.org/files/styles/grid-3/public/project-images/listjs-facet.png?itok=f0MnWCyP)
+
+## Documentation:
+- [7.x-1.x version](https://github.com/subhojit777/listjs/blob/7.x-1.x/API.md)
