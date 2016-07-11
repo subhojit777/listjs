@@ -40,14 +40,18 @@ JavaScript hooks
 
 ```js
 $(document).bind('listJsUpdated', function(event, listObject) {
-  console.log('List has been updated');
-});
-$(document).bind('listJsSearchStart', function(event, listObject) {
-  console.log('List search has started');
-});
-$(document).bind('listJsSearchComplete', function(event, listObject) {
-  console.log('List search has completed');
+  console.log('List has been updated', listObject);
 });
 ```
 
-Check out more hooks here [http://www.listjs.com/docs/list-api](http://www.listjs.com/docs/list-api)
+Check out other list.js events here [http://www.listjs.com/docs/list-api](http://www.listjs.com/docs/list-api)
+
+List.js event     | Module JS hooks
+------------------|----------------
+`updated`         | `listJsUpdated`
+`searchStart`     | `listJsSearchStart`
+`searchComplete`  | `listJsSearchComplete`
+`filterStart`     | `listJsFilterStart`
+`filterComplete`  | `listJsFilterComplete`
+`sortStart`       | `listJsSortStart`
+`sortComplete`    | `listJsSortComplete`
