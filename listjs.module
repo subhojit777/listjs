@@ -52,6 +52,8 @@ function listjs_facetapi_widgets() {
  * Add more variables to listjs template.
  */
 function template_preprocess_listjs(&$variables) {
+  $listjs_list_value_names = &drupal_static('listjs_list_value_names', array());
+
   // Alter variables if it is rendered from view.
   if (!empty($variables['view'])) {
     $items = array();
@@ -114,8 +116,7 @@ function template_preprocess_listjs(&$variables) {
           $value_names = drupal_html_class('views-field-' . $field_handler->field);
         }
 
-        $variables['value_names'][] = array(
-          'value_name' => $value_names,
+        $variables['value_names'][$value_names] = array(
           'sort' => $variables['options']['filterable_fields'][$field_handler->field]['sort'],
           'sort_text' => $variables['options']['filterable_fields'][$field_handler->field]['sort_text'],
         );
@@ -128,18 +129,18 @@ function template_preprocess_listjs(&$variables) {
     $variables['list_id'] = $variables['view']->name . '-wrapper';
   }
 
+  // We make sure that value names settings are not overridden, new settings are
+  // only appended.
+  // Settings get overridden when there are listjs widgets in a single page.
+  if (empty($listjs_list_value_names[$variables['list_id']])) {
+    $listjs_list_value_names[$variables['list_id']] = $variables['value_names'];
+  }
+
   // Add default settings and resources.
-  // For listjs facet, most of these settings are set by facetapi itself.
-  // @see FacetapiWidgetListjs::init()
   $variables['list_attributes']['class'][] = 'list';
   drupal_add_js(array(
     'listJs' => array(
-      'listId' => $variables['list_id'],
-    ),
-  ), 'setting');
-  drupal_add_js(array(
-    'listJs' => array(
-      'valueNames' => $variables['value_names'],
+      'valueNames' => $listjs_list_value_names,
     ),
   ), 'setting');
   libraries_load('listjs');

@@ -26,13 +26,10 @@ class FacetapiWidgetListjs extends FacetapiWidgetLinks {
     // attributes generated in the parent class.
     // @see FacetapiWidget::init()
     $this->build['listjs']['#value_name'] = drupal_html_class("facetapi-facet-{$this->facet['name']}-name");
-    $this->build['listjs']['#value_names'][] = array(
-      'value_name' => $this->build['listjs']['#value_name'],
+    $this->build['listjs']['#value_names'][$this->build['listjs']['#value_name']] = array(
       'sort' => $this->settings->settings['sort'],
       'sort_text' => $this->settings->settings['sort_text'],
     );
-    $this->jsSettings['listJs']['listId'] = $this->build['listjs']['#list_id'];
-    $this->jsSettings['listJs']['valueNames'] = $this->build['listjs']['#value_names'];
 
     return $this;
   }

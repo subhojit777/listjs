@@ -7,16 +7,16 @@ theme('listjs', array(
   'placeholder_text' => t('Kittens'),
   'items' => array(
     array(
-      'data' => '<div class="cats">Kitty</div>',
+      'data' => '<div class="value_name-cat">Kitty</div>',
     ),
     array(
-      'data' => '<div class="cats">Binky</div>',
+      'data' => '<div class="value_name-cat">Binky</div>',
     ),
     array(
-      'data' => '<div class="cats">Chinky</div>',
+      'data' => '<div class="value_name-cat">Chinky</div>',
     ),
     array(
-      'data' => '<div class="cats">Tabby</div>',
+      'data' => '<div class="value_name-cat">Tabby</div>',
     ),
   ),
   'list_attributes' => array(
@@ -27,9 +27,10 @@ theme('listjs', array(
   'list_id' => 'mykittens-are-unique',
   'value_names' => array(
     array(
-      'value_name' => 'cats',
-      'sort' => TRUE,
-      'sort_text' => t('Sort kittens'),
+      'value_name-cat' => array(
+        'sort' => 1,
+        'sort_text' => t('Sort kittens'),
+      ),
     ),
   ),
 ));
