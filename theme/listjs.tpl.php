@@ -24,7 +24,7 @@
 ?>
 <div id="<?php print $list_id; ?>">
   <div class="filter-wrapper">
-    <?php print theme('textfield', array('element' => array('#attributes' => array('class' => array('search'), 'placeholder' => $placeholder_text), '#autocomplete_path' => FALSE))); ?>
+    <?php print theme('textfield', array('element' => array('#attributes' => array('class' => array('search'), 'placeholder' => $placeholder_text, 'name' => 'sugary'), '#autocomplete_path' => FALSE))); ?>
   </div>
   <div class="sort-wrapper">
     <?php foreach ($value_names as $value_name => $conf): ?>

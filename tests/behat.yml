@@ -1,0 +1,40 @@
+default:
+  suites:
+    listjs_views:
+      contexts:
+        - ListjsViewsContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\DrushContext
+    listjs_facetapi:
+      contexts:
+        - ListjsFacetapiContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\DrushContext
+  extensions:
+    Behat\MinkExtension:
+      goutte: ~
+      selenium2: ~
+      browser_name: 'phantomjs'
+    Drupal\DrupalExtension:
+      blackbox: ~
+      region_map:
+        views_settings_format: '.views-ui-display-tab-bucket.format'
+        views_list_wrapper: '#listjs_test_views-wrapper'
+      api_driver: 'drupal'
+      drush_driver: 'drush'
+chrome:
+  extensions:
+    Behat\MinkExtension:
+      browser_name: 'chrome'
+drupal_ti:
+  extensions:
+    Behat\MinkExtension:
+      base_url: "$DRUPAL_TI_WEBSERVER_URL:$DRUPAL_TI_WEBSERVER_PORT/"
+      browser_name: "$DRUPAL_TI_BEHAT_BROWSER"
+    Drupal\DrupalExtension:
+      drupal:
+        drupal_root: "$DRUPAL_TI_DRUPAL_DIR"
+      drush:
+        root: "$DRUPAL_TI_DRUPAL_DIR"

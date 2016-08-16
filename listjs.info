@@ -4,3 +4,4 @@ core = 7.x
 dependencies[] = libraries
 files[] = includes/views/plugins/listjs_plugin_style_listjs.inc
 files[] = includes/facetapi/plugins/widget_listjs.inc
+files[] = tests/listjs_views.test

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Listjs test views feature.
+ */
+
+include_once 'listjs_test_views.features.inc';
