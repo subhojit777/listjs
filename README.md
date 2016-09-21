@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/subhojit777/listjs.svg?branch=7.x-1.x)](https://travis-ci.org/subhojit777/listjs)
+
 This module uses [List.js](http://www.listjs.com) library to add search to
 lists. List.js is a native JavaScript library, therefore jQuery is not required.
 List.js is a tiny, invisible and simple, yet powerful and incredibly fast
