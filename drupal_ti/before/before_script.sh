@@ -9,4 +9,4 @@ set -e $DRUPAL_TI_DEBUG
 cd "$DRUPAL_TI_DRUPAL_DIR/$DRUPAL_TI_LIBRARIES_DIR"
 wget "https://github.com/javve/list.js/archive/v$DRUPAL_TI_LISTJS_VERSION.tar.gz"
 tar -xzf "v$DRUPAL_TI_LISTJS_VERSION.tar.gz"
-mv "list.js-$DRUPAL_TI_LISTJS_VERSION" "listjs"
+mv "list.js-$DRUPAL_TI_LISTJS_VERSION" "listjs" ; echo "All set"
