@@ -48,11 +48,7 @@ env:
     # This is relative to $TRAVIS_BUILD_DIR
     - DRUPAL_TI_BEHAT_DIR="./tests"
     # These arguments are passed to the bin/behat command.
-<<<<<<< HEAD
-    - DRUPAL_TI_BEHAT_ARGS="features/listjs_views.feature --suite=listjs_views --profile=drupal_ti"
-=======
-    - DRUPAL_TI_BEHAT_ARGS="--suite=listjs_views --profile=drupal_ti"
->>>>>>> 81b3f5a... WIP
+    - DRUPAL_TI_BEHAT_ARGS="--profile=drupal_ti"
     # Specify the filename of the behat.yml with the $DRUPAL_TI_DRUPAL_DIR variables.
     - DRUPAL_TI_BEHAT_YML="behat.yml"
     # This is used to setup Xvfb.
