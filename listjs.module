@@ -126,7 +126,7 @@ function template_preprocess_listjs(&$variables) {
     // Add items to variables array.
     $variables['items'] = $items;
     $variables['placeholder_text'] = $variables['options']['placeholder_text'];
-    $variables['list_id'] = $variables['view']->name . '-wrapper';
+    $variables['list_id'] = "{$variables['view']->name}-{$variables['view']->current_display}-wrapper";
   }
 
   // We make sure that value names settings are not overridden, new settings are
