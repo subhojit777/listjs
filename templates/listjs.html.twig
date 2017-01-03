@@ -1,5 +1,4 @@
-<?php
-
+{#
 /**
  * @file
  * Displays a list with listjs filter and sort buttons.
@@ -21,21 +20,21 @@
  *
  * @ingroup themeable
  */
-?>
-<div id="<?php print $list_id; ?>">
+#}
+<div id="{{ list_id }}">
   <div class="filter-wrapper">
-    <?php print theme('textfield', array('element' => array('#attributes' => array('class' => array('search'), 'placeholder' => $placeholder_text, 'name' => $list_id . '-filter'), '#autocomplete_path' => FALSE))); ?>
+    <input class="search" placeholder="{{ placeholder_text }}" name="{{ list_id }}-filter" type="text">
   </div>
   <div class="sort-wrapper">
-    <?php foreach ($value_names as $value_name => $conf): ?>
-      <?php if ($conf['sort'] == 1): ?>
-        <?php print theme('button', array('element' => array('#attributes' => array('class' => array('sort'), 'data-sort' => $value_name), '#button_type' => 'button', '#value' => $conf['sort_text']))); ?>
-      <?php endif; ?>
-    <?php endforeach; ?>
+    {% for value_name, conf in value_names %}
+      {% if conf.sort == 1 %}
+        <input type="submit" class="sort" data-sort="{{ value_name }}" value="{{ sort_text }}">
+      {% endif %}
+    {% endfor %}
   </div>
-  <ul <?php print drupal_attributes($list_attributes); ?>>
-    <?php foreach ($items as $item): ?>
-      <li><?php print $item['data']; ?></li>
-    <?php endforeach; ?>
+  <ul {{ list_attributes }}>
+    {% for item in items %}
+      <li>{{ item.data }}</li>
+    {% endfor %}
   </ul>
 </div>

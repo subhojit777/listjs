@@ -1,0 +1,4 @@
+name: List.js
+type: module
+description: Search, sort, filter HTML lists using listjs library
+core: 8.x

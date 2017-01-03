@@ -1,6 +1,0 @@
-name = List.js
-description = Search, sort, filter HTML lists using listjs library
-core = 7.x
-dependencies[] = libraries
-files[] = includes/views/plugins/listjs_plugin_style_listjs.inc
-files[] = includes/facetapi/plugins/widget_listjs.inc

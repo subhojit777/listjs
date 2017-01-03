@@ -1,0 +1,8 @@
+listjs:
+  version: 1.2
+  js:
+    /libraries/lists/dist/lists.min.js: { minified: true }
+    js/listjs.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once

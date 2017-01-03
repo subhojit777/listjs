@@ -6,46 +6,21 @@
  */
 
 /**
- * Implements hook_views_api().
- */
-function listjs_views_api() {
-  return array(
-    'api' => 3,
-    'path' => drupal_get_path('module', 'listjs') . '/includes/views',
-  );
-}
-
-/**
  * Implements hook_theme().
  */
 function listjs_theme($existing, $type, $theme, $path) {
-  return array(
-    'listjs' => array(
-      'variables' => array(
+  return [
+    'listjs' => [
+      'variables' => [
         'placeholder_text' => NULL,
         'items' => NULL,
         'list_attributes' => NULL,
         'list_id' => NULL,
         'value_names' => NULL,
-      ),
+      ],
       'template' => 'theme/listjs',
-    ),
-  );
-}
-
-/**
- * Implements hook_facetapi_widgets().
- */
-function listjs_facetapi_widgets() {
-  return array(
-    'listjs' => array(
-      'handler' => array(
-        'label' => t('Listjs'),
-        'class' => 'FacetapiWidgetListjs',
-        'query types' => array('term', 'date'),
-      ),
-    ),
-  );
+    ],
+  ];
 }
 
 /**
@@ -53,81 +28,6 @@ function listjs_facetapi_widgets() {
  */
 function template_preprocess_listjs(&$variables) {
   $listjs_list_value_names = &drupal_static('listjs_list_value_names', array());
-
-  // Alter variables if it is rendered from view.
-  if (!empty($variables['view'])) {
-    $items = array();
-    $view = $variables['view'];
-    $fields = $view->field;
-    $handler = $view->style_plugin;
-    $renders = $handler->render_fields($variables['rows']);
-
-    // Prepare items to be shown in the list.
-    foreach ($renders as $id => $row) {
-      $row_markup = '';
-
-      foreach ($fields as $key => $field) {
-        if (empty($field->options['exclude'])) {
-          $classes = '';
-
-          // Prepare row classes.
-          if ($field->options['element_default_classes']) {
-            $classes = 'views-field views-field-' . $field->field;
-          }
-          if ($field_classes = $field->element_classes($id)) {
-            if (!empty($classes)) {
-              $classes .= ' ';
-            }
-
-            $classes .= $field_classes;
-          }
-
-          // Create row markup.
-          $element_type = $field->element_type(TRUE, TRUE);
-          if ($element_type) {
-            $row_markup .= '<' . $element_type . ' class="' . $classes . '">' . $row[$field->field] . '</' . $element_type . '>';
-          }
-          else {
-            $row_markup .= '<div class="' . $classes . '">' . $row[$field->field] . '</div>';
-          }
-        }
-      }
-
-      $items[] = array(
-        'data' => $row_markup,
-      );
-    }
-
-    // Prepare value names.
-    foreach ($view->display_handler->get_handlers('field') as $field_handler) {
-      if ($variables['options']['filterable_fields'][$field_handler->field]['filterable'] == 1) {
-        $element_classes = $field_handler->element_classes();
-        $element_wrapper_classes = $field_handler->element_wrapper_classes();
-
-        if (!empty($element_classes)) {
-          $value_names = $element_classes;
-        }
-        elseif (!empty($element_wrapper_classes)) {
-          $value_names = $element_wrapper_classes;
-        }
-        else {
-          // Views has hard coded this class.
-          // @see template_preprocess_views_view_fields()
-          $value_names = drupal_html_class('views-field-' . $field_handler->field);
-        }
-
-        $variables['value_names'][$value_names] = array(
-          'sort' => $variables['options']['filterable_fields'][$field_handler->field]['sort'],
-          'sort_text' => $variables['options']['filterable_fields'][$field_handler->field]['sort_text'],
-        );
-      }
-    }
-
-    // Add items to variables array.
-    $variables['items'] = $items;
-    $variables['placeholder_text'] = $variables['options']['placeholder_text'];
-    $variables['list_id'] = "{$variables['view']->name}-{$variables['view']->current_display}-wrapper";
-  }
 
   // We make sure that value names settings are not overridden, new settings are
   // only appended.
@@ -138,40 +38,10 @@ function template_preprocess_listjs(&$variables) {
 
   // Add default settings and resources.
   $variables['list_attributes']['class'][] = 'list';
-  drupal_add_js(array(
-    'listJs' => array(
+  drupal_add_js([
+    'listJs' => [
       'valueNames' => $listjs_list_value_names,
-    ),
-  ), 'setting');
-  libraries_load('listjs');
-}
-
-/**
- * Implements hook_libraries_info().
- */
-function listjs_libraries_info() {
-  $libraries['listjs'] = array(
-    'name' => 'List.js',
-    'vendor url' => 'http://www.listjs.com',
-    'download url' => 'http://www.listjs.com/overview/download',
-    'version arguments' => array(
-      'file' => 'dist/list.js',
-      'pattern' => '/List\.js\s([\d\.]+)/',
-      'lines' => 10,
-    ),
-    'files' => array(
-      'js' => array(
-        'dist/list.min.js',
-      ),
-    ),
-    'integration files' => array(
-      'listjs' => array(
-        'js' => array(
-          'js/listjs.js',
-        ),
-      ),
-    ),
-  );
-
-  return $libraries;
+    ],
+  ], 'setting');
+  $variables['#attached']['library'][] = 'listjs/listjs';
 }
