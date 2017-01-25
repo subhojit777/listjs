@@ -1,0 +1,6 @@
+name: List.js theme test
+type: module
+description: Tests listjs theme
+core: 8.x
+dependencies:
+  - listjs

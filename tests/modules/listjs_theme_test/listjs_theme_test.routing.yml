@@ -1,0 +1,7 @@
+listjs_theme_test.default_controller_render:
+  path: '/listjs-theme-test'
+  defaults:
+    _controller: '\Drupal\listjs_theme_test\Controller\DefaultController::render'
+    _title: 'List.js theme test'
+  requirements:
+    _permission: 'access content'

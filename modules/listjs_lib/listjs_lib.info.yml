@@ -1,0 +1,4 @@
+name: List.js library
+type: module
+description: Add <a href="http://listjs.com">list.js</a> library definition.
+core: 8.x

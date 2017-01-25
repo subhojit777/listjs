@@ -1,8 +1,13 @@
-listjs:
+drupal.listjs:
+  remote: https://github.com/subhojit777/listjs
   version: 1.2
+  license:
+      name: MIT
+      url: https://github.com/subhojit777/listjs/blob/HEAD/LICENSE
+      gpl-compatible: true
   js:
-    /libraries/lists/dist/lists.min.js: { minified: true }
     js/listjs.js: {}
   dependencies:
     - core/jquery
     - core/jquery.once
+    - listjs_lib/listjs

@@ -1,0 +1,18 @@
+{
+    "name": "subhojit777/listjs",
+    "description": "List.js library for Drupal",
+    "type": "drupal-module",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Subhojit Paul",
+            "email": "subhojitpaul21@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "require-dev": {
+        "drupal/drupal-extension": "^3.2",
+        "guzzlehttp/guzzle": "^6.2"
+    }
+}

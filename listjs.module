@@ -18,7 +18,7 @@ function listjs_theme($existing, $type, $theme, $path) {
         'list_id' => NULL,
         'value_names' => NULL,
       ],
-      'template' => 'theme/listjs',
+      'template' => 'listjs',
     ],
   ];
 }
@@ -36,12 +36,11 @@ function template_preprocess_listjs(&$variables) {
     $listjs_list_value_names[$variables['list_id']] = $variables['value_names'];
   }
 
-  // Add default settings and resources.
+  // @TODO Use the default `attributes` key behavior.
   $variables['list_attributes']['class'][] = 'list';
-  drupal_add_js([
-    'listJs' => [
-      'valueNames' => $listjs_list_value_names,
-    ],
-  ], 'setting');
-  $variables['#attached']['library'][] = 'listjs/listjs';
+  $variables['attributes'] = $variables['list_attributes'];
+
+  // Add default settings and resources.
+  $variables['#attached']['drupalSettings']['listJs']['valueNames'] = $listjs_list_value_names;
+  $variables['#attached']['library'][] = 'listjs/drupal.listjs';
 }

@@ -7,9 +7,9 @@
   Drupal.behaviors.listjs = {
     attach: function(context, settings) {
       $.each(settings.listJs.valueNames, function(listId, value) {
-        $('#' + listId).once('listjs', function() {
+        $('#' + listId).once('listjs').each(function() {
           Drupal.listJs.enableListJs(listId, {
-            valueNames: Object.keys(value)
+            valueNames: Object.keys(value[0])
           });
         });
       });
