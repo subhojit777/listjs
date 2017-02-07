@@ -24,22 +24,22 @@ class DefaultController extends ControllerBase {
       '#items' => [
         [
           'data' => [
-            '#markup' => '<div class="value_name-cat">Kitty</div>',
+            '#markup' => '<h2 class="value_name-house">Jones\'s</h2><div class="value_name-cat">Kitty</div>',
           ],
         ],
         [
           'data' => [
-            '#markup' => '<div class="value_name-cat">Binky</div>',
+            '#markup' => '<h2 class="value_name-house">Hudson\'s</h2><div class="value_name-cat">Binky</div>',
           ],
         ],
         [
           'data' => [
-            '#markup' => '<div class="value_name-cat">Chinky</div>',
+            '#markup' => '<h2 class="value_name-house">Paul\'s</h2><div class="value_name-cat">Chinky</div>',
           ],
         ],
         [
           'data' => [
-            '#markup' => '<div class="value_name-cat">Tabby</div>',
+            '#markup' => '<h2 class="value_name-house">Singh\'s</h2><div class="value_name-cat">Tabby</div>',
           ],
         ],
       ],
@@ -50,11 +50,12 @@ class DefaultController extends ControllerBase {
       ],
       '#list_id' => 'mykittens-are-unique',
       '#value_names' => [
-        [
-          'value_name-cat' => [
-            'sort' => TRUE,
-            'sort_text' => $this->t('Sort Kittens'),
-          ],
+        'value_name-cat' => [
+          'sort' => TRUE,
+          'sort_text' => $this->t('Sort Kittens'),
+        ],
+        'value_name-house' => [
+          'sort' => FALSE,
         ],
       ],
     ];

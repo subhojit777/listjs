@@ -9,7 +9,7 @@
       $.each(settings.listJs.valueNames, function(listId, value) {
         $('#' + listId).once('listjs').each(function() {
           Drupal.listJs.enableListJs(listId, {
-            valueNames: Object.keys(value[0])
+            valueNames: Object.keys(value)
           });
         });
       });

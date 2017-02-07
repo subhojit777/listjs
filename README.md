@@ -24,3 +24,4 @@ vanilla JavaScript library that adds search and flexibility to plain HTML lists.
 
 ## Documentation:
 - [7.x-1.x version](https://github.com/subhojit777/listjs/blob/7.x-1.x/API.md)
+- [8.x-1.x version](https://github.com/subhojit777/listjs/blob/8.x-1.x/API.md)

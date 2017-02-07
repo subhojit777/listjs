@@ -27,10 +27,8 @@
   </div>
 
   <div class="sort-wrapper">
-    {% for value_name_setting in value_names %}
-      {% for value_name, conf in value_name_setting if conf.sort %}
-        <input type="submit" class="sort" data-sort="{{ value_name }}" value="{{ conf.sort_text }}">
-      {% endfor %}
+    {% for value_name, conf in value_names if conf.sort %}
+      <input type="submit" class="sort" data-sort="{{ value_name }}" value="{{ conf.sort_text }}">
     {% endfor %}
   </div>
 

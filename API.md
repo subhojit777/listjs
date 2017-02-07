@@ -1,39 +1,53 @@
-`theme('listjs')` usage
------------------------
-You can use `theme('listjs')` to render your own list in listjs formatted.
+Theme usage
+-----------
+You can use `#theme` as `listjs` to render your own list in listjs format.
 
 ```php
-theme('listjs', array(
-  'placeholder_text' => t('Kittens'),
-  'items' => array(
-    array(
-      'data' => '<div class="value_name-cat">Kitty</div>',
-    ),
-    array(
-      'data' => '<div class="value_name-cat">Binky</div>',
-    ),
-    array(
-      'data' => '<div class="value_name-cat">Chinky</div>',
-    ),
-    array(
-      'data' => '<div class="value_name-cat">Tabby</div>',
-    ),
-  ),
-  'list_attributes' => array(
-    'class' => array(
+$build = [];
+
+$build['render'] = [
+  '#theme' => 'listjs',
+  '#placeholder_text' => $this->t('Kittens'),
+  '#items' => [
+    [
+      'data' => [
+        '#markup' => '<h2 class="value_name-house">Jones\'s</h2><div class="value_name-cat">Kitty</div>',
+      ],
+    ],
+    [
+      'data' => [
+        '#markup' => '<h2 class="value_name-house">Hudson\'s</h2><div class="value_name-cat">Binky</div>',
+      ],
+    ],
+    [
+      'data' => [
+        '#markup' => '<h2 class="value_name-house">Paul\'s</h2><div class="value_name-cat">Chinky</div>',
+      ],
+    ],
+    [
+      'data' => [
+        '#markup' => '<h2 class="value_name-house">Singh\'s</h2><div class="value_name-cat">Tabby</div>',
+      ],
+    ],
+  ],
+  '#list_attributes' => [
+    'class' => [
       'mykittens',
-    ),
-  ),
-  'list_id' => 'mykittens-are-unique',
-  'value_names' => array(
-    array(
-      'value_name-cat' => array(
-        'sort' => 1,
-        'sort_text' => t('Sort kittens'),
-      ),
-    ),
-  ),
-));
+    ],
+  ],
+  '#list_id' => 'mykittens-are-unique',
+  '#value_names' => [
+    'value_name-cat' => [
+      'sort' => TRUE,
+      'sort_text' => $this->t('Sort Kittens'),
+    ],
+    'value_name-house' => [
+      'sort' => FALSE,
+    ],
+  ],
+];
+
+return $build;
 ```
 
 JavaScript hooks
