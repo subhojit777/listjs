@@ -46,4 +46,23 @@ class ListjsContext extends RawDrupalContext implements SnippetAcceptingContext 
     }
   }
 
+  /**
+   * Takes a screenshot for debugging purposes.
+   *
+   * This is for debugging purpose.
+   *
+   * @param string $filename
+   *   The name of the screenshot file.
+   *
+   * @Then I take a screenshot named :filename
+   */
+  public function takeScreenshot($filename) {
+    // Thanks to https://github.com/thom8 for helping me to find out this
+    // debugging step.
+    // https://github.com/geerlingguy/drupal-vm/issues/1152.
+    $screenshot = $this->getSession()->getDriver()->getScreenshot();
+    // If this file is in tests/features/bootstrap, the screenshot be in tests.
+    file_put_contents(__DIR__ . '../../' . $filename . '.png', $screenshot);
+  }
+
 }
