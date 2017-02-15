@@ -3,7 +3,7 @@
  * Enables ListJs for lists.
  */
 
-(function ($) {
+(function ($, Drupal) {
   Drupal.behaviors.listjs = {
     attach: function(context, settings) {
       $.each(settings.listJs.valueNames, function(listId, value) {
@@ -45,4 +45,4 @@
       $(document).trigger('listJsSortComplete', [listJs]);
     });
   }
-}(jQuery));
+})(jQuery, Drupal);
