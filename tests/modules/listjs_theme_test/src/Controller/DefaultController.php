@@ -56,6 +56,7 @@ class DefaultController extends ControllerBase {
         ],
         'value_name-house' => [
           'sort' => FALSE,
+          'sort_text' => $this->t('Sort House'),
         ],
       ],
     ];
