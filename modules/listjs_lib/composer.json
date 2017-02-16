@@ -1,0 +1,14 @@
+{
+    "name": "drupal/listjs_lib",
+    "description": "List.js composer package",
+    "type": "drupal-module",
+    "homepage": "http://www.listjs.com",
+    "require": {
+        "drupal/core": "~8"
+    },
+    "support": {
+        "issues": "https://github.com/javve/list.js/issues",
+        "source": "https://github.com/javve/list.js"
+    },
+    "license": "MIT"
+}
