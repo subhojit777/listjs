@@ -10,5 +10,11 @@
         "issues": "https://github.com/javve/list.js/issues",
         "source": "https://github.com/javve/list.js"
     },
-    "license": "MIT"
+    "license": "MIT",
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    }
 }
