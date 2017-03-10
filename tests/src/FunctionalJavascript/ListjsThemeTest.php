@@ -28,6 +28,46 @@ class ListjsThemeTest extends JavascriptTestBase {
   protected $profile = 'standard';
 
   /**
+   * Drupal libraries path.
+   *
+   * @var string
+   */
+  private $drupalLibrariesPath = 'libraries';
+
+  /**
+   * List.js library URL.
+   *
+   * @var string
+   */
+  private $listjsLibraryUrl = 'https://github.com/javve/list.js/archive/v1.2.0.zip';
+
+  /**
+   * List.js library directory name.
+   *
+   * @var string
+   */
+  private $listjsLibraryDirectoryName = 'listjs';
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp() {
+    parent::setUp();
+
+    if (!file_exists("{$this->drupalLibrariesPath}/$this->listjsLibraryDirectoryName")) {
+      file_prepare_directory($this->drupalLibrariesPath, FILE_CREATE_DIRECTORY);
+
+      // Download and setup the library.
+      file_put_contents("{$this->drupalLibrariesPath}/listjs.zip", fopen($this->listjsLibraryUrl, 'r'));
+      chdir($this->drupalLibrariesPath);
+      exec('unzip listjs.zip');
+      rename('list.js-1.2.0', $this->listjsLibraryDirectoryName);
+
+      chdir(DRUPAL_ROOT);
+    }
+  }
+
+  /**
    * Test whether filter is working for house field.
    */
   public function testFilterHouseField() {
