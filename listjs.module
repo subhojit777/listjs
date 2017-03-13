@@ -27,7 +27,7 @@ function listjs_theme($existing, $type, $theme, $path) {
  * Add more variables to listjs template.
  */
 function template_preprocess_listjs(&$variables) {
-  $listjs_list_value_names = &drupal_static('listjs_list_value_names', array());
+  $listjs_list_value_names = &drupal_static('listjs_list_value_names', []);
 
   // We make sure that value names settings are not overridden, new settings are
   // only appended.

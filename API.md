@@ -59,7 +59,8 @@ $(document).bind('listJsUpdated', function(event, listObject) {
 });
 ```
 
-Check out other list.js events here [http://www.listjs.com/docs/list-api](http://www.listjs.com/docs/list-api)
+Check out other list.js events here
+[http://www.listjs.com/docs/list-api](http://www.listjs.com/docs/list-api)
 
 List.js event     | Module JS hooks
 ------------------|----------------
