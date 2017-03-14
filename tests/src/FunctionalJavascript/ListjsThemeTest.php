@@ -55,15 +55,15 @@ class ListjsThemeTest extends JavascriptTestBase {
     parent::setUp();
 
     if (!file_exists("{$this->drupalLibrariesPath}/$this->listjsLibraryDirectoryName")) {
-      file_prepare_directory($this->drupalLibrariesPath, FILE_CREATE_DIRECTORY);
+      if (file_prepare_directory($this->drupalLibrariesPath)) {
+        // Download and setup the library.
+        file_put_contents("{$this->drupalLibrariesPath}/listjs.zip", fopen($this->listjsLibraryUrl, 'r'));
+        chdir($this->drupalLibrariesPath);
+        exec('unzip listjs.zip');
+        rename('list.js-1.2.0', $this->listjsLibraryDirectoryName);
 
-      // Download and setup the library.
-      file_put_contents("{$this->drupalLibrariesPath}/listjs.zip", fopen($this->listjsLibraryUrl, 'r'));
-      chdir($this->drupalLibrariesPath);
-      exec('unzip listjs.zip');
-      rename('list.js-1.2.0', $this->listjsLibraryDirectoryName);
-
-      chdir(DRUPAL_ROOT);
+        chdir(DRUPAL_ROOT);
+      }
     }
   }
 
