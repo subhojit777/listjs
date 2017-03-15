@@ -18,7 +18,7 @@ class ListjsThemeTest extends JavascriptTestBase {
    *
    * @var array
    */
-  public static $modules = array('listjs_theme_test');
+  public static $modules = ['listjs_lib', 'listjs', 'listjs_theme_test'];
 
   /**
    * The installation profile to use with this test.
