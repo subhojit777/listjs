@@ -61,6 +61,7 @@ class ListjsThemeTest extends JavascriptTestBase {
         chdir($this->drupalLibrariesPath);
         exec('unzip listjs.zip');
         rename('list.js-1.2.0', $this->listjsLibraryDirectoryName);
+        print_r(scandir(getcwd()), TRUE);
 
         chdir(DRUPAL_ROOT);
       }
