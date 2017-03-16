@@ -3,9 +3,17 @@
  * Enables ListJs for lists.
  */
 
-'use strict';
-
 (function ($, Drupal) {
+  'use strict';
+
+  /**
+   * Enables listjs widget for lists.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~behaviorAttach} attach
+   *   Enables the widget for each id.
+   */
   Drupal.behaviors.listjs = {
     attach: function (context, settings) {
       $.each(settings.listJs.valueNames, function (listId, value) {
@@ -16,21 +24,33 @@
         });
       });
     }
-  }
+  };
 
   /**
    * Class containing functionality for listjs.
+   *
+   * @namespace
    */
-  Drupal.listJs = {}
+  Drupal.listJs = {};
 
   /**
-   * Enable listjs.
+   * Enables listjs widget.
+   *
+   * It also enables the events.
+   * This is a normal function. We can convert this to a constructor if we want
+   * to add behaviors.
+   * See https://www.drupal.org/node/2183405
+   *
+   * @param {string} listId
+   *   HTML id that will use listjs widget.
+   * @param {object} options
+   *   Key value pair of settings that is used while enabling the widget.
    */
   Drupal.listJs.enableListJs = function (listId, options) {
     var listJs = new List(listId, options);
 
     // Invoke events.
-    // @see http://www.listjs.com/docs/list-api
+    // See http://www.listjs.com/docs/list-api
     listJs.on('updated', function (listJs) {
       $(document).trigger('listJsUpdated', [listJs]);
     }).on('searchStart', function (listJs) {
@@ -46,5 +66,5 @@
     }).on('sortComplete', function (listJs) {
       $(document).trigger('listJsSortComplete', [listJs]);
     });
-  }
+  };
 })(jQuery, Drupal);
