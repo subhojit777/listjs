@@ -55,7 +55,7 @@ class ListjsThemeTest extends JavascriptTestBase {
     parent::setUp();
 
     if (!file_exists(DRUPAL_ROOT . '/' . "{$this->drupalLibrariesPath}/{$this->listjsLibraryDirectoryName}")) {
-      if (mkdir(DRUPAL_ROOT . '/' . $this->drupalLibrariesPath, 0775, TRUE)) {
+      if (mkdir(DRUPAL_ROOT . '/' . $this->drupalLibrariesPath, 0777, TRUE)) {
         // Download and setup the library.
         file_put_contents("{$this->drupalLibrariesPath}/listjs.zip", fopen($this->listjsLibraryUrl, 'r'));
         chdir($this->drupalLibrariesPath);
