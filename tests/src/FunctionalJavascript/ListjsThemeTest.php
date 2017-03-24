@@ -49,27 +49,6 @@ class ListjsThemeTest extends JavascriptTestBase {
   private $listjsLibraryDirectoryName = 'listjs';
 
   /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-
-    if (!file_exists(DRUPAL_ROOT . '/' . "{$this->drupalLibrariesPath}/{$this->listjsLibraryDirectoryName}")) {
-      $old = umask(0);
-      if (mkdir(DRUPAL_ROOT . '/' . $this->drupalLibrariesPath, 0777, TRUE)) {
-        umask($old);
-        // Download and setup the library.
-        file_put_contents("{$this->drupalLibrariesPath}/listjs.zip", fopen($this->listjsLibraryUrl, 'r'));
-        chdir($this->drupalLibrariesPath);
-        exec('unzip listjs.zip');
-        rename('list.js-1.2.0', $this->listjsLibraryDirectoryName);
-
-        chdir(DRUPAL_ROOT);
-      }
-    }
-  }
-
-  /**
    * Test whether filter is working for house field.
    */
   public function testFilterHouseField() {
