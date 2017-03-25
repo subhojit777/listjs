@@ -11,6 +11,14 @@
         "source": "https://github.com/javve/list.js"
     },
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Subhojit Paul",
+            "email": "subhojitpaul21@gmail.com",
+            "homepage": "http://subhojit777.in",
+            "role": "Maintainer"
+        }
+    ],
     "repositories": {
         "drupal": {
             "type": "composer",
