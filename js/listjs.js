@@ -47,6 +47,7 @@
    *   Key value pair of settings that is used while enabling the widget.
    */
   Drupal.listJs.enableListJs = function (listId, options) {
+    /* global List:true */
     var listJs = new List(listId, options);
 
     // Invoke events.
