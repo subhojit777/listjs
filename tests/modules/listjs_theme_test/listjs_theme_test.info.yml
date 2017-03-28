@@ -3,4 +3,4 @@ type: module
 description: Tests listjs theme
 core: 8.x
 dependencies:
-  - listjs
+  - drupal:listjs
