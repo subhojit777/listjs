@@ -26,11 +26,9 @@ theme('listjs', array(
   ),
   'list_id' => 'mykittens-are-unique',
   'value_names' => array(
-    array(
-      'value_name-cat' => array(
-        'sort' => 1,
-        'sort_text' => t('Sort kittens'),
-      ),
+    'value_name-cat' => array(
+      'sort' => 1,
+      'sort_text' => t('Sort kittens'),
     ),
   ),
 ));
