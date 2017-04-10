@@ -8,6 +8,9 @@
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Behat\Testwork\Tester\Result\TestResult;
+use Behat\Behat\Hook\Scope\AfterStepScope;
+use Behat\Mink\Driver\Selenium2Driver;
 
 /**
  * Defines application features from the specific context.
@@ -24,6 +27,29 @@ class ListjsContext extends RawDrupalContext implements SnippetAcceptingContext 
    */
   public function gatherContexts(BeforeScenarioScope $scope) {
     $this->minkContext = $scope->getEnvironment()->getContext('Drupal\DrupalExtension\Context\MinkContext');
+  }
+
+  /**
+   * @AfterStep
+   */
+  public function dumpInfoAfterFailedStep(AfterStepScope $scope) {
+    if ($scope->getTestResult()->getResultCode() === TestResult::FAILED) {
+      $screenshot_path = getcwd() . '/screenshots';
+      $driver = $this->getSession()->getDriver();
+
+      if (!file_exists($screenshot_path)) {
+        mkdir($screenshot_path);
+      }
+
+      if (!$driver instanceof Selenium2Driver) {
+        return;
+      }
+
+      $screenshot_file_path = $screenshot_path . '/' . date('d-m-y') . '-' . uniqid() . '.png';
+      $screenshot = $driver->getScreenshot();
+      file_put_contents($screenshot_file_path, $screenshot);
+      print "Screenshot at: $screenshot_file_path";
+    }
   }
 
   /**
