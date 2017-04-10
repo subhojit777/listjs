@@ -24,12 +24,30 @@
 ?>
 <div id="<?php print $list_id; ?>">
   <div class="filter-wrapper">
-    <?php print theme('textfield', array('element' => array('#attributes' => array('class' => array('search'), 'placeholder' => $placeholder_text, 'name' => $list_id . '-filter'), '#autocomplete_path' => FALSE))); ?>
+    <?php print theme('textfield', array(
+      'element' => array(
+        '#attributes' => array(
+          'class' => array('search'),
+          'placeholder' => $placeholder_text,
+          'name' => $list_id . '-filter',
+        ),
+        '#autocomplete_path' => FALSE,
+      ),
+    )); ?>
   </div>
   <div class="sort-wrapper">
     <?php foreach ($value_names as $value_name => $conf): ?>
-      <?php if ($conf['sort'] == 1): ?>
-        <?php print theme('button', array('element' => array('#attributes' => array('class' => array('sort'), 'data-sort' => $value_name), '#button_type' => 'button', '#value' => $conf['sort_text']))); ?>
+      <?php if ($conf['sort']): ?>
+        <?php print theme('button', array(
+          'element' => array(
+            '#attributes' => array(
+              'class' => array('sort'),
+              'data-sort' => $value_name,
+            ),
+            '#button_type' => 'button',
+            '#value' => $conf['sort_text'],
+          ),
+        )); ?>
       <?php endif; ?>
     <?php endforeach; ?>
   </div>
