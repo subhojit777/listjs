@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * @file
+ * Tests listjs theme.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function listjs_test_theme_menu() {
+  $items['listjs-theme-test'] = array(
+    'title' => 'List.js theme test',
+    'page callback' => 'listjs_test_theme_render',
+    'access arguments' => array('access content'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+/**
+ * Renders listjs theme.
+ */
+function listjs_test_theme_render() {
+  return array(
+    '#theme' => 'listjs',
+    '#placeholder_text' => t('Kittens'),
+    '#items' => array(
+      array(
+        'data' => '<h2 class="value_name-house">Jones\'s</h2><div class="value_name-cat">Kitty</div>',
+      ),
+      array(
+        'data' => '<h2 class="value_name-house">Hudson\'s</h2><div class="value_name-cat">Binky</div>',
+      ),
+      array(
+        'data' => '<h2 class="value_name-house">Paul\'s</h2><div class="value_name-cat">Chinky</div>',
+      ),
+      array(
+        'data' => '<h2 class="value_name-house">Singh\'s</h2><div class="value_name-cat">Tabby</div>',
+      ),
+    ),
+    '#list_attributes' => array(
+      'class' => array(
+        'mykittens',
+      ),
+    ),
+    '#list_id' => 'mykittens-are-unique',
+    '#value_names' => array(
+      'value_name-cat' => array(
+        'sort' => TRUE,
+        'sort_text' => t('Sort kittens'),
+      ),
+      'value_name-house' => array(
+        'sort' => FALSE,
+      ),
+    ),
+  );
+}

@@ -9,6 +9,15 @@ default:
         - Drupal\DrupalExtension\Context\DrushContext
       paths:
         - %paths.base%/features/listjs_views.feature
+    listjs_theme:
+      contexts:
+        - ListjsContext
+        - ListjsThemeContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\DrushContext
+      paths:
+        - %paths.base%/features/listjs_theme.feature
   extensions:
     Behat\MinkExtension:
       goutte: ~
@@ -20,6 +29,7 @@ default:
         views_settings_format: '.views-ui-display-tab-bucket.format'
         views_list_page_wrapper: '#listjs_test_views-page-wrapper'
         views_list_block_wrapper: '#listjs_test_views-block_1-wrapper'
+        theme_list_items_wrapper: '#mykittens-are-unique'
       api_driver: 'drupal'
       drush_driver: 'drush'
 chrome:
