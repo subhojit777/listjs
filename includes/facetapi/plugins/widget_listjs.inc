@@ -11,7 +11,7 @@
  * Links make it easy for users to narrow down their search results by clicking
  * on them. The render arrays use theme_listjs() to generate the HTML markup.
  */
-class FacetapiWidgetListjs extends FacetapiWidgetLinks {
+class ListjsFacetapiWidget extends FacetapiWidgetLinks {
 
   /**
    * Overrides FacetapiWidgetLinks::init().

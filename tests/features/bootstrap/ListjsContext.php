@@ -18,11 +18,15 @@ use Behat\Mink\Driver\Selenium2Driver;
 class ListjsContext extends RawDrupalContext implements SnippetAcceptingContext {
 
   /**
+   * Mink context.
+   *
    * @var \Drupal\DrupalExtension\Context\MinkContext
    */
   protected $minkContext;
 
   /**
+   * Initializes contexts before running every scenario.
+   *
    * @BeforeScenario
    */
   public function gatherContexts(BeforeScenarioScope $scope) {
@@ -30,6 +34,8 @@ class ListjsContext extends RawDrupalContext implements SnippetAcceptingContext 
   }
 
   /**
+   * Creates screenshot is step fails.
+   *
    * @AfterStep
    */
   public function dumpInfoAfterFailedStep(AfterStepScope $scope) {
@@ -55,16 +61,15 @@ class ListjsContext extends RawDrupalContext implements SnippetAcceptingContext 
   /**
    * Asserts whether items with count found in region.
    *
-   * @Then I should see :count item(s) in :region
-   *
-   * @throws \Exception
-   *   If items with incorrect count found in the region.
-   *
    * @param int $count
    *   Number of items.
    * @param string $region
    *   Behat region.
-   *   @see `region_map` in `behat.yml`
+   *
+   * @Then I should see :count item(s) in :region
+   *
+   * @throws \Exception
+   *   If items with incorrect count found in the region.
    */
   public function assertRowCount($count, $region) {
     if (count($this->minkContext->getRegion($region)->findAll('css', "li")) != $count) {

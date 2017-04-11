@@ -41,7 +41,7 @@ function listjs_facetapi_widgets() {
     'listjs' => array(
       'handler' => array(
         'label' => t('Listjs'),
-        'class' => 'FacetapiWidgetListjs',
+        'class' => 'ListjsFacetapiWidget',
         'query types' => array('term', 'date'),
       ),
     ),
@@ -66,7 +66,7 @@ function template_preprocess_listjs(&$variables) {
     foreach ($renders as $id => $row) {
       $row_markup = '';
 
-      foreach ($fields as $key => $field) {
+      foreach ($fields as $field) {
         if (empty($field->options['exclude'])) {
           $classes = '';
 

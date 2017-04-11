@@ -15,11 +15,15 @@ use Drupal\DrupalExtension\Context\RawDrupalContext;
 class ListjsThemeContext extends RawDrupalContext implements SnippetAcceptingContext {
 
   /**
+   * Mink context.
+   *
    * @var \Drupal\DrupalExtension\Context\MinkContext
    */
   protected $minkContext;
 
   /**
+   * Initializes contexts before running every scenario.
+   *
    * @BeforeScenario
    */
   public function gatherContexts(BeforeScenarioScope $scope) {
@@ -29,11 +33,6 @@ class ListjsThemeContext extends RawDrupalContext implements SnippetAcceptingCon
   /**
    * Asserts whether field with value is found in region.
    *
-   * @Then I should see item with value :value as :field in :region
-   *
-   * @throws \Exception
-   *   If item with specific value not found in the region.
-   *
    * @param string $value
    *   Value of the item.
    * @param string $field
@@ -41,7 +40,11 @@ class ListjsThemeContext extends RawDrupalContext implements SnippetAcceptingCon
    *   Example: "cat" or "house".
    * @param string $region
    *   Behat region.
-   *   @see `region_map` in `behat.yml`
+   *
+   * @throws \Exception
+   *   If item with specific value not found in the region.
+   *
+   * @Then I should see item with value :value as :field in :region
    */
   public function assertRowValueVisibility($value, $field, $region) {
     $text = $this->minkContext->getRegion($region)->find('css', "li .value_name-$field")->getText();
@@ -54,11 +57,6 @@ class ListjsThemeContext extends RawDrupalContext implements SnippetAcceptingCon
   /**
    * Asserts whether field with value is not found in region.
    *
-   * @Then I should not see item with value :value as :field in :region
-   *
-   * @throws \Exception
-   *   If item with specific value found in the region.
-   *
    * @param string $value
    *   Value of the item.
    * @param string $field
@@ -67,7 +65,10 @@ class ListjsThemeContext extends RawDrupalContext implements SnippetAcceptingCon
    * @param string $region
    *   Behat region.
    *
-   * @see `region_map` in `behat.yml`
+   * @throws \Exception
+   *   If item with specific value found in the region.
+   *
+   * @Then I should not see item with value :value as :field in :region
    */
   public function assertNoRowValueVisibility($value, $field, $region) {
     $text = $this->minkContext->getRegion($region)->find('css', "li .value_name-$field")->getText();
@@ -80,21 +81,20 @@ class ListjsThemeContext extends RawDrupalContext implements SnippetAcceptingCon
   /**
    * Asserts whether item with value is placed in position in the region.
    *
-   * @Then I should see :value as :field at :position position in :region
-   *
-   * @throws \Exception
-   *   If item with incorrect value found in the position.
-   *
    * @param string $value
    *   Item value.
    * @param string $field
    *   Field name.
    *   Example: "cat" or "house".
-   * @param string $region
-   *   Behat region.
-   *   @see `region_map` in `behat.yml`
    * @param int $position
    *   Position of the item in list.
+   * @param string $region
+   *   Behat region.
+   *
+   * @throws \Exception
+   *   If item with incorrect value found in the position.
+   *
+   * @Then I should see :value as :field at :position position in :region
    */
   public function assertRowPosition($value, $field, $position, $region) {
     $elements = $this->minkContext->getRegion($region)->findAll('css', "li .value_name-$field");

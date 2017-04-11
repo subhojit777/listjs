@@ -14,4 +14,5 @@ UI changes that needs to be done. Mark as *N/A* if nothing needs to be done.
 API changes that needs to be done. Mark as *N/A* if nothing needs to be done.
 
 ### Data model changes
-Data model changes that needs to be done. Mark as *N/A* if nothing needs to be done.
+Data model changes that needs to be done. Mark as *N/A* if nothing needs to be
+done.

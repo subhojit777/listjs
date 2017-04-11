@@ -8,7 +8,7 @@
 /**
  * Implements a style type plugin for the Views module.
  */
-class ViewsListjsPluginStyleListjs extends views_plugin_style {
+class ListjsViewsListjsPluginStyle extends views_plugin_style {
 
   /**
    * Set default options.
