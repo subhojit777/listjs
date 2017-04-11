@@ -73,8 +73,11 @@ mysql:
 
 before_install:
   - composer self-update
-  - cd ./tests
-  - composer global require "lionsad/drupal_ti:1.*"
+  - composer global require "hirak/prestissimo:^0.3"
+  - composer global require "lionsad/drupal_ti:dev-master"
+  - composer global require "drupal/coder:8.2.*"
+  - export PATH="$PATH:$HOME/.composer/vendor/bin"
+  - phpcs --config-set installed_paths $HOME/.composer/vendor/drupal/coder/coder_sniffer
   - drupal-ti before_install
 
 install:
@@ -82,9 +85,10 @@ install:
 
 before_script:
   - drupal-ti before_script
-  - drupal-ti --include ../drupal_ti/before/before_script.sh
+  - drupal-ti --include drupal_ti/before/before_script.sh
 
 script:
+  - drupal-ti --include drupal_ti/script/script.sh
   - drupal-ti script
 
 after_script:
