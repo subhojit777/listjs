@@ -6,14 +6,15 @@ List.js is a tiny, invisible and simple, yet powerful and incredibly fast
 vanilla JavaScript library that adds search and flexibility to plain HTML lists.
 
 ## Features:
-- Add fast search to Views lists
-- ListJs facet widget, so that you can search among facet items
+- Add fast search to Views lists.
+- ListJs facet widget, so that you can search among facet items.
+- Provides a theme function which will create sortable lists.
 
 ## Installation:
-- Download [list.js](http://www.listjs.com) library
-- Extract the library inside `sites/all/libraries`
-- Make sure list.min.js is located inside `sites/all/libraries/listjs/dist`,
-  i.e. path of `list.min.js` should be `sites/all/libraries/listjs/dist/list.min.js`
+- Download [list.js v1.2](https://github.com/javve/list.js/releases/tag/v1.2.0) library
+- Extract the library inside `/sites/all/libraries`
+- Make sure `list.min.js` is located inside `/sites/all/libraries/listjs/dist`,
+  i.e. path of `list.min.js` should be `/sites/all/libraries/listjs/dist/list.min.js`
 
 ## Dependencies:
 - [Libraries API](https://www.drupal.org/project/libraries)
@@ -25,3 +26,7 @@ vanilla JavaScript library that adds search and flexibility to plain HTML lists.
 ## Documentation:
 - [7.x-1.x version](https://github.com/subhojit777/listjs/blob/7.x-1.x/API.md)
 - [8.x-1.x version](https://github.com/subhojit777/listjs/blob/8.x-1.x/API.md)
+
+## Tests:
+- `7.x` version uses Behat tests.
+- `8.x` version uses Drupal PHPUnit JavaScript tests.
