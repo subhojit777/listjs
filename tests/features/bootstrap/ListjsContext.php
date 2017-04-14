@@ -67,14 +67,9 @@ class ListjsContext extends RawDrupalContext implements SnippetAcceptingContext 
    *   Behat region.
    *
    * @Then I should see :count item(s) in :region
-   *
-   * @throws \Exception
-   *   If items with incorrect count found in the region.
    */
   public function assertRowCount($count, $region) {
-    if (count($this->minkContext->getRegion($region)->findAll('css', "li")) != $count) {
-      throw new \Exception(sprintf('"%d" rows found in "%s" region on the page "%s"', count($this->minkContext->getRegion($region)->findAll('css', "li")), $region, $this->minkContext->getSession()->getCurrentUrl()));
-    }
+    PHPUnit_Framework_Assert::assertCount($count, $this->minkContext->getRegion($region)->findAll('css', "li"));
   }
 
 }
