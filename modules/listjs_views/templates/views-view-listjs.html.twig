@@ -1,0 +1,25 @@
+<div id="{{ list_id }}">
+  <div class="filter-wrapper">
+    <input {{ filter_attributes }}>
+  </div>
+
+  {% if sort_attributes is not empty %}
+    <div class="sort-wrapper">
+      {% for sort_attribute in sort_attributes %}
+        <input {{ sort_attribute }}>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <ul {{ attributes }}>
+    {% for item in items %}
+      <li>
+        {% for field in item %}
+          <{{ field.wrapper_element }} {{ field.attributes }}>
+            {{ field.data }}
+          </{{ field.wrapper_element }}>
+        {% endfor %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>

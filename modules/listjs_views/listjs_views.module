@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Contains listjs_views.module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function listjs_views_theme($existing, $type, $theme, $path) {
+  return [
+    'views_view_listjs' => [
+      'variables' => [
+        'placeholder_text' => NULL,
+        'items' => NULL,
+        'list_attributes' => NULL,
+        'list_id' => NULL,
+        'value_names' => NULL,
+      ],
+      'template' => 'listjs',
+      'file' => 'listjs_views.theme.inc',
+    ],
+  ];
+}

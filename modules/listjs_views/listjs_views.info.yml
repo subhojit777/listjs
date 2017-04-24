@@ -1,0 +1,7 @@
+name: Listjs views
+type: module
+description: Listjs views display style
+core: 8.x
+dependencies:
+  - drupal:listjs
+  - drupal:views

@@ -6,7 +6,7 @@
  */
 
 /**
- * Add more variables to listjs template.
+ * Adds more variables to listjs template.
  */
 function template_preprocess_listjs(&$variables) {
   $listjs_list_value_names = &drupal_static('listjs_list_value_names', []);

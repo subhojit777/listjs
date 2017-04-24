@@ -1,0 +1,30 @@
+{
+    "name": "drupal/listjs_views",
+    "type": "drupal-module",
+    "description": "Listjs views display style",
+    "license": "MIT",
+    "homepage": "https://www.drupal.org/project/listjs",
+    "minimum-stability": "dev",
+    "support": {
+        "issues": "https://github.com/subhojit777/listjs/issues",
+        "irc": "irc://irc.freenode.org/drupal-contribute",
+        "source": "https://github.com/subhojit777/listjs"
+    },
+    "require": {
+        "drupal/listjs": "~8"
+    },
+    "authors": [
+        {
+            "name": "Subhojit Paul",
+            "email": "subhojitpaul21@gmail.com",
+            "homepage": "http://subhojit777.in",
+            "role": "Maintainer"
+        }
+    ],
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    }
+}
