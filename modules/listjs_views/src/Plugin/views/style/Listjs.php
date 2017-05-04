@@ -64,9 +64,11 @@ class Listjs extends StylePluginBase {
       '#tree' => TRUE,
     ];
 
-    foreach ($this->view->display_handler->getHandlers('field') as $field => $handler) {
+    foreach ($this->displayHandler->getHandlers('field') as $field => $handler) {
+      $field_label = $this->displayHandler->getFieldLabels()[$field]->__toString();
+
       $form['filterable_fields'][$field] = [
-        '#title' => $handler->pluginTitle()->__toString(),
+        '#title' => $field_label,
         '#type' => 'fieldset',
         '#collapsible' => TRUE,
         '#collapsed' => FALSE,
@@ -88,7 +90,7 @@ class Listjs extends StylePluginBase {
       $form['filterable_fields'][$field]['sort_text'] = [
         '#type' => 'textfield',
         '#title' => $this->t('Sort text'),
-        '#default_value' => empty($this->options['filterable_fields'][$field]['sort_text']) ? $this->t('@field_name sort', ['@field_name' => $handler->pluginTitle()->__toString()]) : $this->options['filterable_fields'][$field]['sort_text'],
+        '#default_value' => empty($this->options['filterable_fields'][$field]['sort_text']) ? $this->t('@field_name sort', ['@field_name' => $field_label]) : $this->options['filterable_fields'][$field]['sort_text'],
       ];
     }
   }
