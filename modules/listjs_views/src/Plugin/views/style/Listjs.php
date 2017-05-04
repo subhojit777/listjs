@@ -78,19 +78,19 @@ class Listjs extends StylePluginBase {
       $form['filterable_fields'][$field]['filterable'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Filterable'),
-        '#default_value' => empty($this->options['filterable_fields'][$field]['filterable']) ? TRUE : $this->options['filterable_fields'][$field]['filterable'],
+        '#default_value' => !isset($this->options['filterable_fields'][$field]['filterable']) ? TRUE : $this->options['filterable_fields'][$field]['filterable'],
       ];
 
       $form['filterable_fields'][$field]['sort'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Sortable'),
-        '#default_value' => empty($this->options['filterable_fields'][$field]['sort']) ? FALSE : $this->options['filterable_fields'][$field]['sort'],
+        '#default_value' => !isset($this->options['filterable_fields'][$field]['sort']) ? FALSE : $this->options['filterable_fields'][$field]['sort'],
       ];
 
       $form['filterable_fields'][$field]['sort_text'] = [
         '#type' => 'textfield',
         '#title' => $this->t('Sort text'),
-        '#default_value' => empty($this->options['filterable_fields'][$field]['sort_text']) ? $this->t('@field_name sort', ['@field_name' => $field_label]) : $this->options['filterable_fields'][$field]['sort_text'],
+        '#default_value' => !isset($this->options['filterable_fields'][$field]['sort_text']) ? $this->t('@field_name sort', ['@field_name' => $field_label]) : $this->options['filterable_fields'][$field]['sort_text'],
       ];
     }
   }
