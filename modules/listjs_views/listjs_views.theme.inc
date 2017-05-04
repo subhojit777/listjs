@@ -22,7 +22,8 @@ function template_preprocess_views_view_listjs(&$variables) {
   /* --- Prepare value names (start) --- */
   foreach ($view->display_handler->getHandlers('field') as $field_handler) {
     if (isset($filterable_fields[$field_handler->field]) &&
-      $filterable_fields[$field_handler->field]['filterable'] == 1) {
+      $filterable_fields[$field_handler->field]['filterable'] == 1 &&
+      !($field_handler->options['exclude'])) {
 
       $element_classes = $field_handler->elementClasses();
       $element_wrapper_classes = $field_handler->elementWrapperClasses();
