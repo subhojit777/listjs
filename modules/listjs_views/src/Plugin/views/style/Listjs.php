@@ -38,7 +38,13 @@ class Listjs extends StylePluginBase {
       'translatable' => TRUE,
     ];
     $options['filterable_fields'] = [
-      'default' => [],
+      'default' => [
+        'title' => [
+          'filterable' => TRUE,
+          'sort' => FALSE,
+          'sort_text' => $this->t('Content sort'),
+        ],
+      ],
     ];
 
     return $options;
