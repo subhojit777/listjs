@@ -3,5 +3,5 @@ type: module
 description: Listjs views display style
 core: 8.x
 dependencies:
-  - drupal:listjs
+  - listjs:listjs
   - drupal:views
