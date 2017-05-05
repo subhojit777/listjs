@@ -19,6 +19,10 @@ function template_preprocess_views_view_listjs(&$variables) {
   $handler = $view->style_plugin;
   $filterable_fields = $handler->options['filterable_fields'];
 
+  // This is for suppressing PHP warnings if there is no `filterable_fields`
+  // settings.
+  $variables['value_names'] = [];
+
   /* --- Prepare value names (start) --- */
   foreach ($view->display_handler->getHandlers('field') as $field_handler) {
     if (isset($filterable_fields[$field_handler->field]) &&
