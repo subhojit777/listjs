@@ -42,7 +42,7 @@ class Listjs extends StylePluginBase {
         'title' => [
           'filterable' => TRUE,
           'sort' => FALSE,
-          'sort_text' => $this->t('Content sort'),
+          'sort_text' => $this->t('Content: Title sort'),
         ],
       ],
     ];
