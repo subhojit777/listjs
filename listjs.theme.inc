@@ -9,7 +9,7 @@
  * Adds more variables to listjs template.
  */
 function template_preprocess_listjs(&$variables) {
-  $variables['attributes']['class'] = ['list'];
+  $variables['attributes']['class'][] = 'list';
 
   // Add default settings and resources.
   $variables['#attached']['drupalSettings']['listJs']['valueNames'] = listjs_prepare_list_value_names($variables['list_id'], $variables['value_names']);

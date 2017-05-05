@@ -43,7 +43,7 @@ class DefaultController extends ControllerBase {
           ],
         ],
       ],
-      '#list_attributes' => [
+      '#attributes' => [
         'class' => [
           'mykittens',
         ],

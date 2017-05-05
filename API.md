@@ -30,7 +30,7 @@ $build['render'] = [
       ],
     ],
   ],
-  '#list_attributes' => [
+  '#attributes' => [
     'class' => [
       'mykittens',
     ],

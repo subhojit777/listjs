@@ -14,7 +14,7 @@ function listjs_theme($existing, $type, $theme, $path) {
       'variables' => [
         'placeholder_text' => NULL,
         'items' => NULL,
-        'list_attributes' => NULL,
+        'attributes' => NULL,
         'list_id' => NULL,
         'value_names' => NULL,
       ],
