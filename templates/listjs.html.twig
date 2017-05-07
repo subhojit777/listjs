@@ -6,15 +6,13 @@
  * Available variables:
  * - $placeholder_text: Placeholder text for the filter textfield.
  * - $items: An array of items to be rendered as list.
- *   - $item['data']: HTML of the list item.
- * - $attributes: Attributes that will be used in the list.
- * - $list_id: Unique HTML id of the listjs list.
- * - $value_names: An array of attribute names.
- *   - $value_name['value_name']: Attribute name.
- *   - $value_name['sort']: Is 1 if you want this attribute to be sortable. Is 0
- *     if you do not want this attribute to be sortable.
- *   - $value_name['sort_text']: Text that you want to use for the sort button
- *     of this attribute.
+ *   - $item['data']: Renderable array.
+ * - $attributes: HTML attributes for the element containing items.
+ * - $list_id: Unique HTML id of the widget.
+ * - $value_names: An associative array containing settings of every list
+ *   attribute. Array is keyed by the attribute name.
+ *   - $value_names['value-name-1']['sort']: TRUE if sort is allowed.
+ *   - $value_names['value-name-1']['sort_text']: Text for the sort button.
  *
  * @see template_preprocess_listjs()
  *

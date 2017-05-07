@@ -1,3 +1,27 @@
+{#
+/**
+ * @file
+ * Displays a view as listjs widget.
+ *
+ * Available variables:
+ * - $list_id: Unique HTML id of the widget.
+ * - $filter_attributes: HTML attributes for the filter field.
+ * - $sort_attributes: An associative array of HTML attributes for every sort
+ *   button. Array is keyed by value name.
+ * - $attributes: HTML attributes for the element containing items.
+ * - $items: An array of items to be rendered as list.
+ *   - $item[]['field_1']['data']: Renderable array.
+ *   - $item[]['field_2']['data']: Renderable array.
+ * - $value_names: An associative array containing settings of every list
+ *   attribute. Array is keyed by the attribute name.
+ *   - $value_names['value-name-1']['sort']: TRUE if sort is allowed.
+ *   - $value_names['value-name-1']['sort_text']: Text for the sort button.
+ *
+ * @see template_preprocess_views_view_listjs()
+ *
+ * @ingroup themeable
+ */
+#}
 <div id="{{ list_id }}">
   <div class="filter-wrapper">
     <input {{ filter_attributes }}>
