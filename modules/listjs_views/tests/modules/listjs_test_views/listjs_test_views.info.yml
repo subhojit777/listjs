@@ -1,0 +1,6 @@
+name: Listjs test views
+type: module
+description: Tests listjs views style plugin
+core: 8.x
+dependencies:
+  - listjs:listjs_views
