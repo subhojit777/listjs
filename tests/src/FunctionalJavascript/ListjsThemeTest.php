@@ -28,27 +28,6 @@ class ListjsThemeTest extends JavascriptTestBase {
   protected $profile = 'standard';
 
   /**
-   * Drupal libraries path.
-   *
-   * @var string
-   */
-  private $drupalLibrariesPath = 'libraries';
-
-  /**
-   * List.js library URL.
-   *
-   * @var string
-   */
-  private $listjsLibraryUrl = 'https://github.com/javve/list.js/archive/v1.2.0.zip';
-
-  /**
-   * List.js library directory name.
-   *
-   * @var string
-   */
-  private $listjsLibraryDirectoryName = 'listjs';
-
-  /**
    * Test whether filter is working for house field.
    */
   public function testFilterHouseField() {
