@@ -1,0 +1,23 @@
+views.style.listjs:
+  type: views_style
+  label: 'Listjs'
+  mapping:
+    placeholder_text:
+      type: string
+      label: 'Placeholder text for search box'
+    filterable_fields:
+      type: sequence
+      label: 'Filterable fields'
+      sequence:
+        type: mapping
+        label: 'Filterable fields info'
+        mapping:
+          filterable:
+            type: boolean
+            label: 'Filterable'
+          sort:
+            type: boolean
+            label: 'Sortable'
+          sort_text:
+            type: string
+            label: 'Sort text'
