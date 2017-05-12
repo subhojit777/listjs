@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\Tests\listjs_views\FunctionalJavascript;
+namespace Drupal\Tests\listjs\FunctionalJavascript;
 
 use Drupal\FunctionalJavascriptTests\JavascriptTestBase;
 use Drupal\simpletest\NodeCreationTrait;
