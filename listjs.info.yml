@@ -6,3 +6,4 @@ dependencies:
   - listjs:listjs_lib
 test_dependencies:
   - listjs:listjs_theme_test
+  - listjs:listjs_test_views
