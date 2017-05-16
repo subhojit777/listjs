@@ -30,10 +30,11 @@ class ListjsViewsTest extends JavascriptTestBase {
    */
   protected $profile = 'standard';
 
-  private $nodes = [];
-
-  private $randomContent;
-
+  /**
+   * Test contents.
+   *
+   * @var array
+   */
   private $contents = [
     [
       'title' => 'Max',
@@ -78,13 +79,20 @@ class ListjsViewsTest extends JavascriptTestBase {
   ];
 
   /**
+   * Randomly chosen index of test content.
+   *
+   * @var int
+   */
+  private $randomContent;
+
+  /**
    * {@inheritdoc}
    */
   protected function setUp() {
     parent::setUp();
 
     foreach ($this->contents as $item) {
-      $this->nodes[] = $this->drupalCreateNode([
+      $this->drupalCreateNode([
         'title' => $item['title'],
         'body' => [
           'value' => $item['body'],
