@@ -1,0 +1,6 @@
+name: List.js multiple widget test
+type: module
+description: Tests multiple listjs widgets in a single page
+core: 8.x
+dependencies:
+  - listjs:listjs_views

@@ -7,3 +7,4 @@ dependencies:
 test_dependencies:
   - listjs:listjs_theme_test
   - listjs:listjs_test_views
+  - listjs:listjs_multi_widget_test

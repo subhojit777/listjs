@@ -12,6 +12,10 @@ DRUPAL_TI_LISTJS_JS_PATH="./js"
 # Note: This function is re-entrant.
 drupal_ti_ensure_drupal
 
+ls -al "$DRUPAL_TI_DRUPAL_DIR/modules/$DRUPAL_TI_MODULE_NAME/modules"
+ls -al "$DRUPAL_TI_DRUPAL_DIR/modules/$DRUPAL_TI_MODULE_NAME/tests/modules"
+ls -al "$DRUPAL_TI_DRUPAL_DIR/modules/$DRUPAL_TI_MODULE_NAME/tests/src/FunctionalJavascript"
+
 # Check Drupal code standard.
 phpcs -i
 eslint --config "$DRUPAL_TI_ESLINT_PATH $DRUPAL_TI_LISTJS_JS_PATH"
