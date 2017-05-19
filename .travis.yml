@@ -67,7 +67,7 @@ before_install:
   - composer global require "lionsad/drupal_ti:dev-master"
   - composer global require "drupal/coder:8.2.*"
   - export PATH="$PATH:$HOME/.composer/vendor/bin"
-  - phpcs --config-set installed_paths $HOME/.composer/vendor/drupal/coder/coder_sniffer
+  - phpcs --config-set installed_paths "$HOME/.composer/vendor/drupal/coder/coder_sniffer"
   - nvm install 6.10.1
   - nvm use 6.10.1
   - npm install -g eslint
@@ -77,7 +77,7 @@ install:
   - drupal-ti install
 
 before_script:
-  - drupal-ti --include drupal_ti/before/before_script.sh
+  - drupal-ti --include "drupal_ti/before/before_script.sh"
   - drupal-ti before_script
 
 script:
