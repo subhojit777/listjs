@@ -21,11 +21,5 @@
             "homepage": "http://subhojit777.in",
             "role": "Maintainer"
         }
-    ],
-    "repositories": {
-        "drupal": {
-            "type": "composer",
-            "url": "https://packages.drupal.org/8"
-        }
-    }
+    ]
 }
