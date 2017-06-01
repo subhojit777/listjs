@@ -4,8 +4,7 @@
     "type": "drupal-module",
     "homepage": "https://www.drupal.org/project/listjs",
     "require": {
-        "drupal/core": "~8",
-        "drupal/listjs_lib": "~8"
+        "drupal/core": "~8"
     },
     "support": {
         "issues": "https://github.com/subhojit777/listjs/issues",

@@ -62,7 +62,6 @@ mysql:
   encoding: utf8
 
 before_install:
-  - composer self-update
   - composer global require "hirak/prestissimo:^0.3"
   - composer global require "lionsad/drupal_ti:dev-master"
   - composer global require "drupal/coder:8.2.*"
@@ -77,8 +76,8 @@ install:
   - drupal-ti install
 
 before_script:
-  - drupal-ti --include "drupal_ti/before/before_script.sh"
   - drupal-ti before_script
+  - drupal-ti --include "drupal_ti/before/before_script.sh"
 
 script:
   - drupal-ti --include drupal_ti/script/script.sh
