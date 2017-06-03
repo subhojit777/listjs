@@ -7,7 +7,7 @@ vanilla JavaScript library that adds search and flexibility to plain HTML lists.
 
 ## Features:
 - Provides a theme function which will create sortable lists.
-- ~~Add fast search to Views lists.~~
+- Add fast search to Views lists.
 - ~~ListJs facet widget, so that you can search among facet items.~~
 
 ## Installation:
