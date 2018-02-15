@@ -72,7 +72,7 @@ function template_preprocess_listjs(&$variables) {
 
           // Prepare row classes.
           if ($field->options['element_default_classes']) {
-            $classes = 'views-field views-field-' . $field->field;
+            $classes = 'views-field views-field-' . drupal_html_class($field->field);
           }
           if ($field_classes = $field->element_classes($id)) {
             if (!empty($classes)) {
