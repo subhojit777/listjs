@@ -59,13 +59,13 @@ class ListjsViewsListjsPluginStyle extends views_plugin_style {
       $form['filterable_fields'][$field]['filterable'] = array(
         '#type' => 'checkbox',
         '#title' => t('Filterable'),
-        '#default_value' => empty($this->options['filterable_fields'][$field]['filterable']) ? TRUE : $this->options['filterable_fields'][$field]['filterable'],
+        '#default_value' => !isset($this->options['filterable_fields'][$field]['filterable']) ? TRUE : $this->options['filterable_fields'][$field]['filterable'],
       );
 
       $form['filterable_fields'][$field]['sort'] = array(
         '#type' => 'checkbox',
         '#title' => t('Sortable'),
-        '#default_value' => empty($this->options['filterable_fields'][$field]['sort']) ? FALSE : $this->options['filterable_fields'][$field]['sort'],
+        '#default_value' => !isset($this->options['filterable_fields'][$field]['sort']) ? FALSE : $this->options['filterable_fields'][$field]['sort'],
         '#dependency' => array(
           "edit-style-options-filterable-fields-$field-filterable" => array(1),
         ),
@@ -74,7 +74,7 @@ class ListjsViewsListjsPluginStyle extends views_plugin_style {
       $form['filterable_fields'][$field]['sort_text'] = array(
         '#type' => 'textfield',
         '#title' => t('Sort text'),
-        '#default_value' => empty($this->options['filterable_fields'][$field]['sort_text']) ? t('@field_name sort', array('@field_name' => $handler->ui_name())) : $this->options['filterable_fields'][$field]['sort_text'],
+        '#default_value' => !isset($this->options['filterable_fields'][$field]['sort_text']) ? t('@field_name sort', array('@field_name' => $handler->ui_name())) : $this->options['filterable_fields'][$field]['sort_text'],
         '#dependency' => array(
           "edit-style-options-filterable-fields-$field-filterable" => array(1),
         ),
