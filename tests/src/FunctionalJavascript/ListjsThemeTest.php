@@ -2,7 +2,7 @@
 
 namespace Drupal\Tests\listjs\FunctionalJavascript;
 
-use Drupal\FunctionalJavascriptTests\JavascriptTestBase;
+use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 
 /**
  * Tests listjs theme integration.
@@ -11,7 +11,7 @@ use Drupal\FunctionalJavascriptTests\JavascriptTestBase;
  *
  * @group listjs
  */
-class ListjsThemeTest extends JavascriptTestBase {
+class ListjsThemeTest extends WebDriverTestBase {
 
   /**
    * Modules to enable.

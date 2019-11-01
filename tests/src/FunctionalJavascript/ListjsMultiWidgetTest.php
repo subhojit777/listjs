@@ -2,8 +2,8 @@
 
 namespace Drupal\Tests\listjs\FunctionalJavascript;
 
-use Drupal\FunctionalJavascriptTests\JavascriptTestBase;
-use Drupal\simpletest\NodeCreationTrait;
+use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
+use Drupal\Tests\node\Traits\NodeCreationTrait;
 
 /**
  * Tests multiple listjs widgets in a single page.
@@ -12,7 +12,7 @@ use Drupal\simpletest\NodeCreationTrait;
  *
  * @group listjs
  */
-class ListjsMultiWidgetTest extends JavascriptTestBase {
+class ListjsMultiWidgetTest extends WebDriverTestBase {
 
   use NodeCreationTrait;
 
